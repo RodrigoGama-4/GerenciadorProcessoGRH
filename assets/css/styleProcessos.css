@@ -155,6 +155,7 @@ header img {
 
 #assunto {
   resize: none;
+  font: Arial 15px normal;
 }
 
 #botao {
@@ -168,6 +169,10 @@ header img {
   border: none;
   color: white;
   font-size: 18px;
+}
+
+#enviar:hover {
+  background-color: #0845af;
 }
 
 /* RODAPÉ DO SITE */
