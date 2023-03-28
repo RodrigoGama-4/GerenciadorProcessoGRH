@@ -106,93 +106,73 @@ header img {
 */
 
 /*TITULO DA PAGINA CENTRAL*/
-#m_titulo{
-    position: relative;
-    text-align: center;
-    padding-bottom: 4rem;
 
-    height: 100%;
-    width: 100%;
-    
+#m_titulo {
+  text-align: center;
+  padding: 20px;
+  font-size: 32px; 
+  margin-bottom: 30px;
+}
+
+/* TITULO DO FORM */
+
+#form_add_titulo {
+  border: 2px solid black;
+  border-radius: 7px;
+  width: fit-content;
+  padding: 10px 40px;
+  position: relative;
+  top: -25px;
+  background-color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin: auto;
 }
 
 /* FORM DE ADICIONAR PROCESSOS*/
+
 #form_add{
-    position: absolute;
-
-    border: 2px solid black;
-    border-radius: 25px;
-    height: 30rem;
-    width: 80%;
-    left: 10%;
-    bottom: 31%;
-    
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 25px;
+  width: 80%;
+  margin: 0 auto;
 }
 
-#form_add_titulo{
-    background-color: white; 
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-
-    border: 2px solid black;
-    border-radius: 10px;
-    width: 15rem;
-
-    position: absolute;
-    left: 50.5%;
-    transform: translate(-50%, 100%);
-
+#form_add_form {
+  width: 98%;
+  padding: 0 20px;
+  margin: 20px  auto;
+  font-size: 20px;
 }
 
-/* FORMULARIO  */
-form label {
-    padding-top: 2rem;
+.input-text {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+}
 
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  form input[type="text"],
-  form input[type="email"],
-  form textarea {
-    display: block;
-    
-    width: 92%;
-    padding: 10px;
-    
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  form input[type="text"]::placeholder,
-  form input[type="email"]::placeholder,
-  form textarea::placeholder {
-    color: #999;
-  }
-  
-  form input[type="submit"] {
-    display: block;
-    padding: 10px;
-    background-color: #446cb3;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 20px auto;
-  }
-  
-  form input[type="submit"]:hover {
-    background-color: #0069d9;
-  }
+#assunto {
+  resize: none;
+}
 
+#botao {
+  text-align: center;
+  margin: 20px 0 10px;
+}
 
+#enviar {
+  padding: 15px 35px;
+  background-color: #235bbd;
+  border: none;
+  color: white;
+  font-size: 18px;
+}
 
 /* RODAPÉ DO SITE */
 .rodape{
-    padding-top: 32rem;
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 }
