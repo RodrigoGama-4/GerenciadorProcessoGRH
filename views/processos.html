@@ -26,36 +26,37 @@
 
     <section id="m_titulo">
         <div>
-            <h1>Gerenciador de Processos - GRH</h1>
-            <div id="form_add_titulo">
-                <p>Adicionar Processos</p>
-            </div>
+            <h1 id="nome_secao_principal" >Gerenciador de Processos - GRH</h1>
         </div>
     </section>
 
     <section id="form_add">
-        
+        <div id="form_add_titulo">
+            <p>Adicionar Processos</p>
+        </div>
         <div id="form_add_form">
             <form>
-                <label for="numero_processo"></label>
-                <input type="text" id="nome" name="nome" placeholder="Numero do Processo">
+                <label for="numero_processo">Número do Processo:</label><br/>
+                <input type="text" id="nome" class="input-text" name="nome" maxlength="100"><br/>
                 
-                <label for="interessado"></label>
-                <input type="text" id="text" name="text" placeholder="Nome do interessado">
+                <label for="interessado">Nome do Interessado:</label><br/>
+                <input type="text" id="text" class="input-text" name="text" maxlength="150"><br/>
                 
-                <label for="remetente"></label>
-                <input type="text" id="remetente" name="remetente" placeholder="Remetente">
+                <label for="remetente">Remetente:</label><br/>
+                <input type="text" id="remetente" class="input-text" name="remetente" maxlength="150"><br/>
                 
-                <label for="destinatario"></label>
-                <input type="text" id="desti" name="desti" placeholder="Destinatário"> 
+                <label for="destinatario">Destinatário:</label><br/>
+                <input type="text" id="desti" class="input-text" name="desti" maxlength="150"> <br/>
 
-                <label for="assunto"></label>
-                <input type="text" id="assu" name="assu" placeholder="Assunto">
-
-                <input type="submit" class="enviar" value="Salvar">
-              </form>
+                <label for="assunto">Assunto:</label><br/>
+                <textarea name="assunto" id="assunto" class="input-text" cols="30" rows="10" ></textarea>
+                <div id="botao">
+                    <input type="submit" id="enviar" value="Salvar">
+                </div>
+            </form>
         </div>
     </section>
+
     <div class="rodape">
         <footer>
             <p>&copy;Gerencia de Recursos Humanos</p>
