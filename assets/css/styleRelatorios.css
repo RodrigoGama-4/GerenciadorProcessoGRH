@@ -4,8 +4,46 @@
     padding: 0;
     box-sizing: border-box;
 }
-  
-/* CABEÇALHO DO SITE */
+
+/* Header */
+header {
+    display: flex;
+    padding: 5px 0;
+    background-color: #235bbd;
+    border-bottom: 1px solid rgb(50, 17, 230);
+}
+
+header img {
+    margin-left: 20px;
+    height: 100px;
+}
+
+#menu_principal {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#menu_principal p {
+    margin: 0 50px;
+    font-size: 24px;
+}
+
+#menu_principal p a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+#menu_principal p a:hover {
+    color: rgb(20, 120, 250);
+    text-decoration: none;
+}
+
+/* Codigo antigo
+
+CABEÇALHO DO SITE 
 header {
     display: flex;
     align-items: center;
@@ -25,7 +63,7 @@ header img {
     font-size: 2rem;
 }
   
-/* TRANSIÇÃO DOS LINKS */
+TRANSIÇÃO DOS LINKS 
 .links::after {
     content: "";
     position: absolute;
@@ -64,7 +102,8 @@ header img {
 #menu_principal p{
     margin-inline: 3rem;
 }
-  
+*/
+
 /*TITULO DA PAGINA CENTRAL*/
 #m_titulo{
     position: relative;
