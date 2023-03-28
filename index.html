@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styleInicial.css">
+    <title>Início GRH - Gerenciador de Processos</title>
+</head>
+<body>
+    <header>
+        <div id="logo_ufal">
+            <img src="./assets/img/png.png" alt="Logo UFAL">
+        </div>
+        <div id="menu_principal">
+            <p><a class="links" href="index.html">Início</a></p>
+            <p><a class="links" href="./views/processos.html">Processos</a></p>
+            <p><a class="links" href="./views/relatorios.html">Relatórios</a></p>
+        </div>
+        <!--
+        <div id="icone_config" class="links">
+            <img src="./assets/img/cardapio.png" alt="Icone tres barrinhas">
+        </div>
+        -->
+    </header>
+
+    <section id="m_busca">
+        <div id="m_busca_titulo">
+            <h1>Gerenciador de Processos - GRH</h1>
+        </div>
+        <div id="f_busca">
+            <form action="">
+                <input type="text" name="busca" id="busca" placeholder="Buscar"><br>
+                <button type="submit">
+                    <img src="./assets/img/59cfc4d2d3b1936210a5ddc7.png" alt="Icone Lupa">
+                </button>
+            </form>
+            <div id="f_busca_filtros">
+                <button>
+                    <img src="./assets/img/barras.png" alt="Icone Filtro">
+                    <p>Filtros</p> 
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultado">
+        <div>
+            <div id="resultado_quant">
+                <p>Exibindo XXXX resultados</p>
+            </div>
+            <div id="resultado_indi">
+                <div id="resultado_indi_informacoes">
+                    <p>Nome Interessado</p>
+                    <p>Numero Processo</p>
+                    <p>Data</p> 
+                </div>
+                <div id="resultado_indi_icone">
+                    <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy;Gerencia de Recursos Humanos</p>
+    </footer>
+</body>
+</html>

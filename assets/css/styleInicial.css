@@ -1,0 +1,168 @@
+/* Zerando todo o documento */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    display: flex;
+    padding: 5px 0;
+    background-color: #235bbd;
+    border-bottom: 1px solid rgb(50, 17, 230);
+}
+
+header img {
+    margin-left: 20px;
+    height: 100px;
+}
+
+#menu_principal {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#menu_principal p {
+    margin: 0 50px;
+    font-size: 24px;
+}
+
+#menu_principal p a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+#menu_principal p a:hover {
+    color: rgb(20, 120, 250);
+    text-decoration: none;
+}
+
+/*
+#icone_config {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: right;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+#icone_config img {
+    height: 40px;
+}
+*/
+
+/* Campo pesquisa */
+
+#m_busca {
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#m_busca_titulo {
+    font-size: 32px;
+}
+
+#f_busca {
+    min-width: 700px;
+}
+
+#f_busca form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#f_busca form input {
+    margin: 20px 3px;
+    padding: 10px;
+    min-width: 500px;
+}
+
+#f_busca form button img{
+    background-color: white;
+    height: 32px;
+    cursor: pointer;
+}
+
+#f_busca form button:hover{
+    border: 2px solid black;
+}
+
+#f_busca_filtros {
+    display: flex;
+    justify-content: center;
+}
+
+#f_busca_filtros button {
+    display: flex;
+    border: 1px solid rgba(128, 128, 128, 0.342);
+    border-radius: 7px;
+    background-color: rgb(226, 226, 226);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 7px;
+    font-size: 20px;
+}
+
+#f_busca_filtros button img {
+    height: 18px;
+    margin-right: 10px;
+}
+
+/* Resultado */
+
+#resultado {
+    width: 80%;
+    min-height: 550px;
+    border: 2px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+}
+
+#resultado_quant {
+    text-align: left;
+    margin: 0 0 15px 18px;
+}
+
+#resultado_indi {
+    width: 98%;
+    border: 2px solid rgb(66, 66, 66);
+    border-radius: 10px;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+}
+
+#resultado_indi_informacoes {
+    width: 90%;
+}
+
+#resultado_indi_icone {
+    align-items: right;
+    width: 9%;
+}
+
+#resultado_indi_icone img {
+    height: 50px;
+}
+
+/* Rodape */
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
