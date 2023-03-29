@@ -7,6 +7,16 @@ var assunto = document.getElementById('assunto')
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
+    
+    var env = {
+        'numero': numero.value,
+        'nome': nome.value,
+        'remetente': remetente.value,
+        'desit': desti.value,
+        'assunto': assunto.value
+    }
 
+    console.log(env)
+    
     alert('Enviado')
 })
