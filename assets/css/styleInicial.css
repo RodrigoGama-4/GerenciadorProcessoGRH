@@ -136,7 +136,7 @@ header img {
     margin: 0 0 15px 18px;
 }
 
-#resultado_indi {
+.resultado_indi {
     width: 98%;
     border: 2px solid rgb(66, 66, 66);
     border-radius: 10px;
@@ -149,20 +149,20 @@ header img {
     display: flex;
 }
 
-#resultado_indi_informacoes {
+.resultado_indi_informacoes {
     width: 90%;
 }
 
-#resultado_indi_informacoes p {
+.resultado_indi_informacoes p {
     margin-top: 5px;
 }
 
-#resultado_indi_icone {
+.resultado_indi_icone {
     align-items: right;
     width: 9%;
 }
 
-#resultado_indi_icone img {
+.resultado_indi_icone img {
     height: 50px;
 }
 
