@@ -1,7 +1,7 @@
-import { db, addDoc, collection, getDocs, doc, query, where } from './firebase.js'
+import { db, addDoc, collection, getDocs, doc, query, where } from '../firebase/firebase.js'
 
 const bt_enviar = document.getElementById('enviar')
-
+var lista_processos = []
 //EVITA O ERRO DO DOM NÃO SER CARREGADO PRIMEIRO 
 const form = document.getElementById('formulario');
 
@@ -13,8 +13,6 @@ if (form !== null){
         let destinatario = document.getElementById('destinatario').value;
         let assunto =  document.getElementById('assunto').value;
         sendData(num_processo, interessado, remetente, destinatario, assunto);
-        //getProcessos();
-        getProcessos("2023");
     });
 }
 
@@ -41,13 +39,14 @@ async function getProcessos() {
       */
     const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     console.log(processos);
-  }
-
-
-  
-async function getProcesso(numero_processo) {
-    const q = query(collection(db, "processo")); 
-    const q1 = q.where('numeroProcesso', 'matches', '*2023*').get()
-    console.log(q1)
     
   }
+
+async function getProcesso(numero_processo) {
+    const q = query(collection(db, "processo"), where('numeroProcesso', '==', numero_processo)); 
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        lista_processos.unshift(doc.id, " => ", doc.data());
+    }); 
+}
+

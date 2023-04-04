@@ -1,3 +1,6 @@
+import { db, addDoc, collection, getDocs, doc, query, where } from '../firebase/firebase.js'
+
+var lista_processos = []
 var form = document.getElementById('formulario')
 var t_busca = document.getElementById('busca')
 
@@ -101,14 +104,16 @@ function main() {
 }
 
 function construir() {
-
-    for (var i = 0; i < result_lista.length; i++) {
+    console.log(lista_processos.length)
+    console.log(lista_processos)
+    for (var i = 0; i < lista_processos.length; i++) {
+        
         res.innerHTML += `<div>
             <button class="resultado_indi">
                 <div class="resultado_indi_informacoes">
-                    <p class="resultado_nome">${result_lista[i].nome}</p>
-                    <p class="resultado_numero">${result_lista[i].numero_pro}</p>
-                    <p class="resultado_data">${result_lista[i].data}</p>
+                    <p class="resultado_nome">${lista_processos[1].interessado}</p>
+                    <p class="resultado_numero">${lista_processos[1].numeroProcesso}</p>
+                    <p class="resultado_data">${lista_processos[1].remetente}</p>
                 </div>
                 <div class="resultado_indi_icone">
                     <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
@@ -121,11 +126,15 @@ function construir() {
 }
 
 
-$("button").click(function() {
-    var t = $(this).attr('id');
-    console.log(text("ID = " + t))
-})
 
-function pagina_processo(n_proc) {
-    console.log(n_proc)
+//TEMPORARIAMENTE FICA AQUI
+
+async function getProcesso(numero_processo) {
+    const q = query(collection(db, "processo"), where('numeroProcesso', '==', numero_processo)); 
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        lista_processos.unshift(doc.id, doc.data());
+    }); 
 }
+
+getProcesso("2023")

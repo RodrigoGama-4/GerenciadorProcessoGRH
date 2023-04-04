@@ -14,7 +14,7 @@ import {
 import {
     getAuth,
     signInWithPopup,
-    GoogleAuthProvider
+    GoogleAuthProvider,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
 
 
