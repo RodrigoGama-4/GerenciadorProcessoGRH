@@ -120,7 +120,7 @@ header img {
 /* Resultado */
 
 #resultado {
-    width: 80%;
+    width: 90%;
     min-height: 550px;
     border: 2px solid black;
     border-radius: 10px;
@@ -131,9 +131,14 @@ header img {
     padding: 20px;
 }
 
-#resultado_quant {
+.resultado_quant {
     text-align: left;
-    margin: 0 0 15px 18px;
+    margin: 15px 25px;
+    width: 98%;
+}
+
+.resultado_quant p{
+    margin-block-start: 0em;
 }
 
 .resultado_indi {
@@ -147,6 +152,7 @@ header img {
     margin: auto;
     padding: 20px;
     display: flex;
+    cursor: pointer;
 }
 
 .resultado_indi_informacoes {
@@ -170,5 +176,6 @@ header img {
 
 footer {
     text-align: center;
+    margin-bottom: 0;
     padding: 20px;
 }

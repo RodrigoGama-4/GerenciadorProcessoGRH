@@ -59,7 +59,6 @@ header img {
 }
 
 
-
 /*TITULO DA PAGINA CENTRAL*/
 
 #m_titulo {
@@ -74,7 +73,7 @@ header img {
 #form_add_titulo {
   border: 2px solid black;
   border-radius: 7px;
-  width: fit-content;
+  width: 300px;
   padding: 10px 40px;
   position: relative;
   top: -25px;
