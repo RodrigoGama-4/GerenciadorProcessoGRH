@@ -7,14 +7,14 @@ const form = document.getElementById('formulario');
 
 if (form !== null){
     bt_enviar.addEventListener('click', () => {
-        /*let num_processo = document.getElementById('numero_processo').value;
+        let num_processo = document.getElementById('numero_processo').value;
         let interessado = document.getElementById('interessado').value;
         let remetente = document.getElementById('remetente').value;
         let destinatario = document.getElementById('destinatario').value;
         let assunto =  document.getElementById('assunto').value;
-        sendData(num_processo, interessado, remetente, destinatario, assunto);*/
+        sendData(num_processo, interessado, remetente, destinatario, assunto);
         //getProcessos();
-        getProcesso(2023);
+        getProcessos("2023");
     });
 }
 
@@ -33,6 +33,12 @@ async function sendData(numero_processo, interessado, remetente, destinatario, a
 //pega todos os dados do banco de dados
 async function getProcessos() {
     const snapshot = await getDocs(collection(db, "processo"));
+    /*
+    snapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+      */
     const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     console.log(processos);
   }
@@ -40,7 +46,8 @@ async function getProcessos() {
 
   
 async function getProcesso(numero_processo) {
-    const docRef = doc(collection(db, 'processo'));
-    const q = query(docRef, where("numeroProcesso", "==", numero_processo));
-    console.log(q)
+    const q = query(collection(db, "processo")); 
+    const q1 = q.where('numeroProcesso', 'matches', '*2023*').get()
+    console.log(q1)
+    
   }

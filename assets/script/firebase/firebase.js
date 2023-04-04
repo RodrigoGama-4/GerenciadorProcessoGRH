@@ -38,7 +38,7 @@ function entrarComGoogle() {
 	signInWithPopup(auth, provider);
 }
 
-entrarComGoogle(); 
+//entrarComGoogle(); 
 auth.onAuthStateChanged(val => {
     if (val){
         console.log('Logado com sucesso')
