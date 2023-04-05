@@ -1,4 +1,4 @@
-import { db, addDoc, collection, getDocs, doc, query, where } from '../firebase/firebase.js'
+import { db, addDoc, collection, getDocs, doc, query, where } from './firebase/firebase.js'
 
 var lista_processos = []
 var form = document.getElementById('formulario')
@@ -48,7 +48,7 @@ function construir() {
                 <div class="resultado_indi_informacoes">
                     <p class="resultado_nome">Interessado: ${lista_processos[i].interessado}</p>
                     <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
-                    <p class="resultado_data">Remetente: ${lista_processos[i].remetente}</p>
+                    <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
                 </div>
                 <div class="resultado_indi_icone">
                     <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
@@ -70,7 +70,7 @@ function construirAll() {
                     <div class="resultado_indi_informacoes">
                         <p class="resultado_nome">Interessado: ${lista_processos[i][j].interessado}</p>
                         <p class="resultado_numero">Nº Processo: ${lista_processos[i][j].numeroProcesso}</p>
-                        <p class="resultado_data">Remetente: ${lista_processos[i][j].remetente}</p>
+                        <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
                     </div>
                     <div class="resultado_indi_icone">
                         <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
