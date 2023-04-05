@@ -1,9 +1,10 @@
 var form = document.getElementById('formulario')
 var numero = document.getElementById('numero_processo')
 var nome = document.getElementById('interessado')
-var remetente = document.getElementById('remetente')
-var desti = document.getElementById('destinatario')
+var data = document.getElementById('data')
+var desti = document.getElementById('destino')
 var assunto = document.getElementById('assunto')
+var obs = document.getElementById('obs')
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -11,9 +12,10 @@ form.addEventListener('submit', function(e){
     var env = {
         'numero': numero.value,
         'nome': nome.value,
-        'remetente': remetente.value,
+        'data': data.value,
         'desit': desti.value,
-        'assunto': assunto.value
+        'assunto': assunto.value,
+        'obs':obs.value
     }
 
     console.log(env)

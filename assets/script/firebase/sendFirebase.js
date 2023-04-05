@@ -9,21 +9,23 @@ if (form !== null){
     bt_enviar.addEventListener('click', () => {
         let num_processo = document.getElementById('numero_processo').value;
         let interessado = document.getElementById('interessado').value;
-        let remetente = document.getElementById('remetente').value;
-        let destinatario = document.getElementById('destinatario').value;
+        let data = document.getElementById('data').value;
+        let destino = document.getElementById('destino').value;
         let assunto =  document.getElementById('assunto').value;
-        sendData(num_processo, interessado, remetente, destinatario, assunto);
+        let obs =  document.getElementById('obs').value;
+        sendData(num_processo, interessado, data, destino, assunto, obs);
     });
 }
 
 //enviar para o firebase na coleção processo
-async function sendData(numero_processo, interessado, remetente, destinatario, assunto) {
+async function sendData(num_processo, interessado, data, destino, assunto, obs) {
     await addDoc(collection(db, "processo"), {
-        numeroProcesso: numero_processo,
+        numeroProcesso: num_processo,
         interessado: interessado,
-        remetente: remetente,
-        destinatario: destinatario,
+        data: data,
+        destino: destino,
         assunto: assunto,
+        obs: obs,
     });
 }
 
