@@ -8,7 +8,6 @@ const resultado = ''
 var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
-texto_fim.style.visibility = 'hidden'
 
 
 form.addEventListener('submit', function(e) { 
@@ -99,27 +98,27 @@ function identificandoDivs() {
 
 //TEMPORARIAMENTE FICA AQUI
 
-async function getProcesso(numero_processo) {
+async function getProcesso(data) {
     lista_processos = []
-    const q = query(collection(db, "processo"), where('destinatario', '==', numero_processo)); 
+    const q = query(collection(db, "processo"), where('destino', '==', data)); 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         lista_processos.unshift(doc.id, doc.data());
     }); 
 
-    const a = query(collection(db, "processo"), where('interessado', '==', numero_processo)); 
+    const a = query(collection(db, "processo"), where('interessado', '==', data)); 
     const aSnapshot = await getDocs(a);
     aSnapshot.forEach((doc) => {
         lista_processos.unshift(doc.id, doc.data());
     }); 
 
-    const b = query(collection(db, "processo"), where('numeroProcesso', '==', numero_processo)); 
+    const b = query(collection(db, "processo"), where('numeroProcesso', '==', data)); 
     const bSnapshot = await getDocs(b);
     bSnapshot.forEach((doc) => {
         lista_processos.unshift(doc.id, doc.data());
     }); 
 
-    const c = query(collection(db, "processo"), where('remetente', '==', numero_processo)); 
+    const c = query(collection(db, "processo"), where('data', '==', data)); 
     const cSnapshot = await getDocs(c);
     cSnapshot.forEach((doc) => {
         lista_processos.unshift(doc.id, doc.data());

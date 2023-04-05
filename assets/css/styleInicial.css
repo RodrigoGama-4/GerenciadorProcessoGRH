@@ -122,7 +122,6 @@ header img {
 #resultado {
     width: 90%;
     min-height: 550px;
-    border: 2px solid black;
     border-radius: 10px;
     justify-content: center;
     text-align: center;
@@ -178,4 +177,8 @@ footer {
     text-align: center;
     margin-bottom: 0;
     padding: 20px;
+}
+
+#fim {
+    visibility: hidden;
 }
