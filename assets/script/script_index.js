@@ -43,8 +43,8 @@ function construir() {
     for (var i = 1; i < lista_processos.length; i+=2) {
         
         res.innerHTML += `<div>
-            <button class="resultado_indi" id=${lista_processos[i-1]}>
-                <div class="resultado_indi_informacoes">
+            <button class="resultado_indi">
+                <div class="resultado_indi_informacoes" id=${lista_processos[i-1]}>
                     <p class="resultado_nome">Interessado: ${lista_processos[i].interessado}</p>
                     <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
                     <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
@@ -65,8 +65,8 @@ function construirAll() {
     for (var i = 0; i < lista_processos.length; i++) {
         for (var j = 0; j < lista_processos[i].length; j++){
             res.innerHTML += `<div>
-                <button class="resultado_indi" id=${lista_processos[i][j].id}>
-                    <div class="resultado_indi_informacoes">
+                <button class="resultado_indi">
+                    <div class="resultado_indi_informacoes" id=${lista_processos[i][j].id}>
                         <p class="resultado_nome">Interessado: ${lista_processos[i][j].interessado}</p>
                         <p class="resultado_numero">Nº Processo: ${lista_processos[i][j].numeroProcesso}</p>
                         <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
@@ -84,7 +84,7 @@ function construirAll() {
 
 
 function identificandoDivs() {
-    var items = document.querySelectorAll('.resultado_indi')
+    var items = document.querySelectorAll('.resultado_indi_informacoes')
 
     items.forEach(function(item){
         item.addEventListener('click', function(event){
