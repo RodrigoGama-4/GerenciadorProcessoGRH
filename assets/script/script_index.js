@@ -100,29 +100,25 @@ function identificandoDivs() {
 
 async function getProcesso(data) {
     lista_processos = []
-    const q = query(collection(db, "processo"), where('destino', '==', data)); 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        lista_processos.unshift(doc.id, doc.data());
-    }); 
-
-    const a = query(collection(db, "processo"), where('interessado', '==', data)); 
-    const aSnapshot = await getDocs(a);
-    aSnapshot.forEach((doc) => {
-        lista_processos.unshift(doc.id, doc.data());
-    }); 
-
-    const b = query(collection(db, "processo"), where('numeroProcesso', '==', data)); 
-    const bSnapshot = await getDocs(b);
-    bSnapshot.forEach((doc) => {
-        lista_processos.unshift(doc.id, doc.data());
-    }); 
-
     const c = query(collection(db, "processo"), where('data', '==', data)); 
     const cSnapshot = await getDocs(c);
     cSnapshot.forEach((doc) => {
         lista_processos.unshift(doc.id, doc.data());
     }); 
+  
+    //PESQUISA POR SUBSTRING
+    const snapshot = await getDocs(collection(db, "processo"));
+    const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    processos.forEach((processo) => {
+      const interessadoMinusculo = processo.interessado.toLowerCase();
+      const numProcMinusculo = processo.numeroProcesso.toLowerCase();
+      const destinoMinusculo = processo.destino.toLowerCase();
+      const subStringMinusculo = data.toLowerCase();
+      if (interessadoMinusculo.includes(subStringMinusculo) || numProcMinusculo.includes(subStringMinusculo) || destinoMinusculo.includes(subStringMinusculo)) {
+        lista_processos.unshift(processo);
+        lista_processos.unshift(processo.id);
+      }
+    });
 }
 
 async function getProcessos() {
