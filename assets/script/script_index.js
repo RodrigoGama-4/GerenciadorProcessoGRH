@@ -27,12 +27,13 @@ async function main() {
         texto_fim.style.visibility = 'visible'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
         construirAll();
+        texto_fim.style.visibility = 'visible'
     } else {
         await getProcesso(t_busca.value)
         res.style.border = '2px solid black'
-        texto_fim.style.visibility = 'visible'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
         construir();
+        texto_fim.style.visibility = 'visible'
     }
     
 }
@@ -49,14 +50,15 @@ function construir() {
                     <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
                     <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
                 </div>
-                <div class="resultado_indi_icone">
-                    <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
+                <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
+                    <img src="./assets/img/excluir.png" alt="Icone Seta">
                 </div>
             </button>
         </div>`
     } 
 
     identificandoDivs()
+    identificandoIcones()
 }
 
 function construirAll() {
@@ -71,8 +73,8 @@ function construirAll() {
                         <p class="resultado_numero">Nº Processo: ${lista_processos[i][j].numeroProcesso}</p>
                         <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
                     </div>
-                    <div class="resultado_indi_icone">
-                        <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
+                    <div class="resultado_indi_icone" id="${lista_processos[i][j].id}excluir">
+                        <img src="./assets/img/excluir.png" alt="Icone Seta">
                     </div>
                 </button>
             </div>`
@@ -80,6 +82,7 @@ function construirAll() {
     } 
 
     identificandoDivs()
+    identificandoIcones()
 }
 
 
@@ -89,10 +92,29 @@ function identificandoDivs() {
     items.forEach(function(item){
         item.addEventListener('click', function(event){
             var text = item.id;
-
             console.log('Item clicado', text)
+
+            dadosNovaPagina(text)
         })
     })
+}
+
+function identificandoIcones() {
+    var items = document.querySelectorAll('.resultado_indi_icone')
+
+    items.forEach(function(item){
+        item.addEventListener('click', function(event){
+            var text = item.id;
+
+            alert('Alerta de exclusão. Id:' + text)
+        })
+    })
+}
+
+
+
+function dadosNovaPagina(dado){
+    window.location = "/views/info_processo.html?id="+dado;
 }
 
 
@@ -127,6 +149,6 @@ async function getProcessos() {
     lista_processos = []
     lista_processos.unshift(processos)
     
-  }
+}
 
 
