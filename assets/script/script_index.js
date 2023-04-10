@@ -58,6 +58,7 @@ function construir() {
     } 
 
     identificandoDivs()
+    identificandoIcones()
 }
 
 function construirAll() {
@@ -72,7 +73,7 @@ function construirAll() {
                         <p class="resultado_numero">Nº Processo: ${lista_processos[i][j].numeroProcesso}</p>
                         <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
                     </div>
-                    <div class="resultado_indi_icone">
+                    <div class="resultado_indi_icone" id="${lista_processos[i][j].id}excluir">
                         <img src="./assets/img/excluir.png" alt="Icone Seta">
                     </div>
                 </button>
@@ -81,6 +82,7 @@ function construirAll() {
     } 
 
     identificandoDivs()
+    identificandoIcones()
 }
 
 
@@ -92,6 +94,18 @@ function identificandoDivs() {
             var text = item.id;
 
             console.log('Item clicado', text)
+        })
+    })
+}
+
+function identificandoIcones() {
+    var items = document.querySelectorAll('.resultado_indi_icone')
+
+    items.forEach(function(item){
+        item.addEventListener('click', function(event){
+            var text = item.id;
+
+            alert('Alerta de exclusão. Id:' + text)
         })
     })
 }
