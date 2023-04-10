@@ -27,12 +27,13 @@ async function main() {
         texto_fim.style.visibility = 'visible'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
         construirAll();
+        texto_fim.style.visibility = 'visible'
     } else {
         await getProcesso(t_busca.value)
         res.style.border = '2px solid black'
-        texto_fim.style.visibility = 'visible'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
         construir();
+        texto_fim.style.visibility = 'visible'
     }
     
 }
@@ -50,7 +51,7 @@ function construir() {
                     <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
                 </div>
                 <div class="resultado_indi_icone">
-                    <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
+                    <img src="./assets/img/excluir.png" alt="Icone Seta">
                 </div>
             </button>
         </div>`
@@ -72,7 +73,7 @@ function construirAll() {
                         <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
                     </div>
                     <div class="resultado_indi_icone">
-                        <img src="./assets/img/seta-para-a-direita.png" alt="Icone Seta">
+                        <img src="./assets/img/excluir.png" alt="Icone Seta">
                     </div>
                 </button>
             </div>`
