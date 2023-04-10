@@ -92,8 +92,9 @@ function identificandoDivs() {
     items.forEach(function(item){
         item.addEventListener('click', function(event){
             var text = item.id;
-
             console.log('Item clicado', text)
+
+            dadosNovaPagina(text)
         })
     })
 }
@@ -108,6 +109,12 @@ function identificandoIcones() {
             alert('Alerta de exclusão. Id:' + text)
         })
     })
+}
+
+
+
+function dadosNovaPagina(dado){
+    window.location = "/views/info_processo.html?id="+dado;
 }
 
 
@@ -142,6 +149,6 @@ async function getProcessos() {
     lista_processos = []
     lista_processos.unshift(processos)
     
-  }
+}
 
 
