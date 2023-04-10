@@ -1,0 +1,207 @@
+/* Zerando todo o documento */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    display: flex;
+    padding: 5px 0;
+    background-color: #235bbd;
+    border-bottom: 1px solid rgb(50, 17, 230);
+}
+
+header img {
+    margin-left: 20px;
+    height: 100px;
+}
+
+#menu_principal {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#menu_principal p {
+    margin: 0 50px;
+    font-size: 24px;
+}
+
+#menu_principal p a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+#menu_principal p a:hover {
+    color: rgb(20, 120, 250);
+    text-decoration: none;
+}
+
+/* Codigo antigo
+
+CABEÇALHO DO SITE 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #446cb3;   
+}
+  
+header img {
+    margin-left: 20px;
+    height: 100px;
+}
+  
+.links{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+}
+  
+TRANSIÇÃO DOS LINKS 
+.links::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #254e94;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+    
+.links:hover::after {
+    visibility: visible;
+    transform: scaleX(1);
+}
+    
+.links:hover {
+    color: #13397a;
+}
+  
+  
+#icone_config{
+    font-size: 1rem;
+    padding-top: 4rem;
+}
+  
+#menu_principal {
+    display: inline-flex;
+    text-decoration: none;
+    padding-top: 2rem;
+    padding-left: 10%;
+}
+  
+#menu_principal p{
+    margin-inline: 3rem;
+}
+*/
+
+/*TITULO DA PAGINA CENTRAL*/
+#m_titulo{
+    position: relative;
+    text-align: center;
+    padding-bottom: 4rem;
+    height: 100%;
+    width: 100%;
+}
+  
+/* FORM DE ADICIONAR PROCESSOS*/
+#form_add{
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 25px;
+    height: 30rem;
+    width: 80%;
+    left: 10%;
+    bottom: 31%;
+}
+  
+#form_add_titulo{
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 15rem;
+    position: absolute;
+    left: 50.5%;
+    transform: translate(-50%, 100%);
+}
+ 
+/* FORMULARIO  */
+form label {
+    padding-top: 2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    display: block;
+    width: 92%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+    
+form input[type="text"]::placeholder,
+form input[type="email"]::placeholder,
+form textarea::placeholder {
+    color: #999;
+}
+    
+form input[type="submit"] {
+    display: block;
+    padding: 10px;
+    background-color: #446cb3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+    
+form input[type="submit"]:hover {
+    background-color: #0069d9;
+}
+
+/* SEÇÃO PRINCIPAL*/
+.secao_principal{
+    margin: 0 20px;
+    margin-top: 1rem;
+    height: 48rem;
+    border: 2px solid black;
+}
+
+.nome_secao_principal{
+    display: flex;
+    justify-content: center;
+}
+
+.resultado_pesquisa{
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 25px;
+    left: 8%;
+    width: 85%;
+    height: 60%;
+    
+}
+
+/* RODAPÉ DO SITE */
+.rodape{
+    padding-top: 32rem;
+    display: flex;
+    justify-content: center;
+}
