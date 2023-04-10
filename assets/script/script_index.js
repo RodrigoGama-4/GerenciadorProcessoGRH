@@ -50,7 +50,7 @@ function construir() {
                     <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
                     <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
                 </div>
-                <div class="resultado_indi_icone">
+                <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
                     <img src="./assets/img/excluir.png" alt="Icone Seta">
                 </div>
             </button>
