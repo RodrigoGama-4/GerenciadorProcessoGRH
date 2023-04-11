@@ -1,4 +1,4 @@
-import { db, addDoc, collection, getDocs, doc, query, where } from './firebase/firebase.js'
+import { db, addDoc, collection, getDocs, doc, query, where, deleteDoc } from './firebase/firebase.js'
 
 var lista_processos = []
 var form = document.getElementById('formulario')
@@ -92,21 +92,22 @@ function identificandoDivs() {
     items.forEach(function(item){
         item.addEventListener('click', function(event){
             var text = item.id;
-            console.log('Item clicado', text)
-
+            console.log(text.length)
             dadosNovaPagina(text)
         })
     })
 }
 
-function identificandoIcones() {
+async function identificandoIcones() {
     var items = document.querySelectorAll('.resultado_indi_icone')
 
     items.forEach(function(item){
-        item.addEventListener('click', function(event){
+        item.addEventListener('click', async function(event){
             var text = item.id;
-
-            alert('Alerta de exclusão. Id:' + text)
+            var res = text.substring(0, 20)
+            const docRef = doc(collection(db, "processo"), res);
+            await deleteDoc(docRef);
+            main()
         })
     })
 }

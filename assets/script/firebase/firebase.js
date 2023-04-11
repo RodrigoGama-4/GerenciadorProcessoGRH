@@ -8,6 +8,7 @@ import {
     getDoc,
     query,
     where,
+    deleteDoc
 } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js'
 
 
@@ -47,7 +48,7 @@ auth.onAuthStateChanged(val => {
 
 
 export {
-    db, doc, addDoc, collection, getDocs, getDoc, query, where
+    db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc
 }
 
 

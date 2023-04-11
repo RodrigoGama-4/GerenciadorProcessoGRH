@@ -1,4 +1,4 @@
-import { db, addDoc, collection, getDocs, doc, query, where} from './firebase/firebase.js'
+import { db, addDoc, collection, getDocs, doc, query, where, getDoc} from './firebase/firebase.js'
 
 var lista_processos = []
 
@@ -10,7 +10,13 @@ function main() {
 
 async function comandos() {
     var variavel = queryString();
-    console.log(variavel)
+    const docRef = doc(db, "processo", variavel);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        console.log('Dados do documento:', docSnap.data());
+    } else {
+        console.log('Documento não encontrado.');
+    }
     //construir()
 }
 
