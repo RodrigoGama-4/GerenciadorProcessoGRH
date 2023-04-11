@@ -1,22 +1,29 @@
-import { db, doc, getDoc} from './firebase/firebase.js'
+import { getProcessoID } from './firebase/funcFirebase.js'
 
 var variavel;
 var processo;
 var corpo = document.getElementById('corpo')
 
+
+// Ao abrir a página a função principal será chamada
 main()
 
+
+// Função principal que chama a função com os comandos
 function main() {
     comandos()
 }
 
+
+// Função que chamas as funções para adquirir o id da url e para pesquisar o processo. Em seguida chama a função para construir as informações
 async function comandos() {
     variavel = queryString();
-    await pesquisa(variavel)
+    processo = await getProcessoID(variavel)
     construir()
 }
 
-// função pra ler querystring
+
+// Função pra ler a url e selecionar o id
 function queryString() {  
     var loc = location.search.substring(1, location.search.length);   
     var param_name;
@@ -29,22 +36,10 @@ function queryString() {
     return param_value
 }
 
-//criar função para pesquisar pelo id no banco de dados
-async function pesquisa(variavel){
-    const docRef = doc(db, "processo", variavel);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            processo = docSnap.data();
-        } else {
-            console.log('Documento não encontrado.');
-        }
-}
-   
 
-
-//implementar a função construir com base no resultado da busca no banco
+// Função para construir com base no resultado da busca no banco
 function construir() {
-    console.log('Constuindo processos pesquisados, tamanho: ', processo)
+    console.log('Constuindo processo pesquisado: ', processo)
 
     corpo.innerHTML = `<div id="id">
                             <p>${variavel}</p>

@@ -1,4 +1,4 @@
-import { db, addDoc, collection, getDocs, doc, query, where, deleteDoc } from './firebase.js'
+import { db, addDoc, collection, getDocs, getDoc, doc, query, where, deleteDoc } from './firebase.js'
 
 
 //enviar para o firebase na coleção processo
@@ -55,6 +55,20 @@ async function getProcessos() {
 }
 
 
+// Pesquisa por ID
+async function getProcessoID(id){
+    let processo
+    const docRef = doc(db, "processo", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            processo = docSnap.data();
+        } else {
+            console.log('Documento não encontrado.');
+        }
+    return processo
+}
+
+
 // Excluir documento
 async function excluir(res) {
     const docRef = doc(collection(db, "processo"), res);
@@ -62,4 +76,4 @@ async function excluir(res) {
 }
 
 
-export {sendData, getProcesso, getProcessos, excluir};
+export {sendData, getProcesso, getProcessos, getProcessoID,excluir};
