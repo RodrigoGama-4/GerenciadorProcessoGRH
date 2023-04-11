@@ -1,3 +1,4 @@
+import { doc } from "./firebase/firebase.js"
 import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
 var lista_processos = []
@@ -132,15 +133,15 @@ function dadosNovaPagina(dado){
 // Função para confirmar a exclusão
 function confirmarExclusao(item){
     // Elemento que impede o usuario de clicar fora do popup
-    const overlayBg = document.createElement('div');
+    let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
     document.body.appendChild(overlayBg);
 
     // Cria o popup
-    const overlay = document.getElementById('overlay')
+    let overlay = document.getElementById('overlay')
     overlay.style.display = "block";
-    const confirmButton = document.getElementById("excluir");
-    const closeButton = document.getElementById("cancelar");
+    let confirmButton = document.getElementById("excluir");
+    let closeButton = document.getElementById("cancelar");
 
     confirmButton.addEventListener("click", async () =>{
         var text = item.id;
@@ -161,11 +162,8 @@ function confirmarExclusao(item){
     // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
-        console.log(overlayBg)
-        /*
-        if (document.body.removeChild(overlayBg)){
-            console.log("removido")
-        }
-        */
+        overlayBg = document.querySelector(".overlay-bg")
+        document.body.removeChild(overlayBg)
+        console.log("removido")
     });
   }
