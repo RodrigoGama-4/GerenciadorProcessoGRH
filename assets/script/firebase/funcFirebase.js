@@ -1,7 +1,7 @@
 import { db, addDoc, collection, getDocs, getDoc, doc, query, where, deleteDoc } from './firebase.js'
 
 
-//enviar para o firebase na coleção processo
+// Envia os dados do processo para o firebase
 async function sendData(num_processo, interessado, data, destino, assunto, obs) {
     await addDoc(collection(db, "processo"), {
         numeroProcesso: num_processo,
@@ -14,7 +14,7 @@ async function sendData(num_processo, interessado, data, destino, assunto, obs) 
 }
 
 
-// Pesquisa por processos atraves do dado passado na entrada
+// Pesquisa por processos atraves do dado passado na entrada - retorna uma lista
 async function getProcesso(data) {
     let lista_processos = []
 
@@ -45,7 +45,7 @@ async function getProcesso(data) {
 }
 
 
-// Pesquisa por todos os processos
+// Pesquisa por todos os processos - retorna uma lista
 async function getProcessos() {
     const snapshot = await getDocs(collection(db, "processo"));
     const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -55,7 +55,7 @@ async function getProcessos() {
 }
 
 
-// Pesquisa por ID
+// Pesquisa por ID - retorna o processo
 async function getProcessoID(id){
     let processo
     const docRef = doc(db, "processo", id);
@@ -69,7 +69,7 @@ async function getProcessoID(id){
 }
 
 
-// Excluir documento
+// Excluir documento - 
 async function excluir(res) {
     const docRef = doc(collection(db, "processo"), res);
     await deleteDoc(docRef);  

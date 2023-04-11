@@ -65,7 +65,6 @@ function construir() {
             </button>
         </div>`
     } 
-
     // Chamando as funções identificadoras
     identificandoDivs()
     identificandoIcones()
@@ -92,7 +91,6 @@ function construirAll() {
             </div>`
         }
     } 
-
     // Chamando as funções identificadoras
     identificandoDivs()
     identificandoIcones()
@@ -131,14 +129,14 @@ function dadosNovaPagina(dado){
 }
 
 
-//CONFIRMAÇÃO DE EXCLUSÃO
+// Função para confirmar a exclusão
 function confirmarExclusao(item){
-    //ELEMENTO PARA IMPEDIR O USUARIO DE CLICAR FORA
+    // Elemento que impede o usuario de clicar fora do popup
     const overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
     document.body.appendChild(overlayBg);
 
-    //DIV PARA CONFIRMAR ELEMENTO EM SI
+    // Cria o popup
     const overlay = document.getElementById('overlay')
     overlay.style.display = "block";
     const confirmButton = document.getElementById("excluir");
@@ -163,8 +161,11 @@ function confirmarExclusao(item){
     // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
+        console.log(overlayBg)
+        /*
         if (document.body.removeChild(overlayBg)){
             console.log("removido")
         }
+        */
     });
   }
