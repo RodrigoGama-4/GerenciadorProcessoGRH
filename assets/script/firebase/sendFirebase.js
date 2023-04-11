@@ -1,9 +1,12 @@
 import { db, addDoc, collection, getDocs, doc, query, where } from '../firebase/firebase.js'
 
+
+/* Será excluido
 const bt_enviar = document.getElementById('enviar')
 var lista_processos = []
 //EVITA O ERRO DO DOM NÃO SER CARREGADO PRIMEIRO 
 const form = document.getElementById('formulario');
+
 
 if (form !== null){
     bt_enviar.addEventListener('click', () => {
@@ -16,6 +19,7 @@ if (form !== null){
         sendData(num_processo, interessado, data, destino, assunto, obs);
     });
 }
+*/
 
 //enviar para o firebase na coleção processo
 async function sendData(num_processo, interessado, data, destino, assunto, obs) {
@@ -52,3 +56,4 @@ async function getProcesso(numero_processo) {
     }); 
 }
 
+export {sendData};
