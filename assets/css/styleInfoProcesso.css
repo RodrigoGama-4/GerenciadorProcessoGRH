@@ -1,0 +1,86 @@
+/* Zerando todo o documento */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    display: flex;
+    padding: 5px 0;
+    background-color: #235bbd;
+    border-bottom: 1px solid rgb(50, 17, 230);
+}
+
+header img {
+    margin-left: 20px;
+    height: 100px;
+}
+
+#menu_principal {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#menu_principal p {
+    margin: 0 50px;
+    font-size: 24px;
+}
+
+#menu_principal p a {
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+#menu_principal p a:hover {
+    color: rgb(20, 120, 250);
+    text-decoration: none;
+}
+
+/* Informações */
+#id {
+    margin: 5px auto;
+    font-size: 12px;
+    color: #a8a8a8;
+    width: 98%;
+    background-color: rgb(228, 228, 228);
+    padding: 8px;
+}
+
+.bold {
+    font-weight: 800;
+}
+
+.semi-bold {
+    font-weight: 700;
+}
+
+.info {
+    margin: 5px auto;
+    width: 98%;
+    border-radius: 10px;
+    background-color: rgb(228, 228, 228);
+    padding: 20px;
+    font-size: 20px;
+}
+
+.info_estilo {
+    background-color: rgb(214, 214, 214);
+    margin-bottom: 2px;
+    padding: 10px;
+}
+
+.justificado {
+    text-align: justify;
+}
+
+
+/* RODAPÉ DO SITE */
+footer{
+    padding: 20px;
+    text-align: center;
+}

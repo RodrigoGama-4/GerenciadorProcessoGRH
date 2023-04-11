@@ -1,6 +1,8 @@
-import { db, addDoc, collection, getDocs, doc, query, where, getDoc} from './firebase/firebase.js'
+import { db, doc, getDoc} from './firebase/firebase.js'
 
-var lista_processos = []
+var variavel;
+var processo;
+var corpo = document.getElementById('corpo')
 
 main()
 
@@ -9,15 +11,9 @@ function main() {
 }
 
 async function comandos() {
-    var variavel = queryString();
-    const docRef = doc(db, "processo", variavel);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        console.log('Dados do documento:', docSnap.data());
-    } else {
-        console.log('Documento não encontrado.');
-    }
-    //construir()
+    variavel = queryString();
+    await pesquisa(variavel)
+    construir()
 }
 
 // função pra ler querystring
@@ -34,26 +30,33 @@ function queryString() {
 }
 
 //criar função para pesquisar pelo id no banco de dados
-
+async function pesquisa(variavel){
+    const docRef = doc(db, "processo", variavel);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            processo = docSnap.data();
+        } else {
+            console.log('Documento não encontrado.');
+        }
+}
+   
 
 
 //implementar a função construir com base no resultado da busca no banco
 function construir() {
-    console.log('Constuindo processos pesquisados, tamanho: ', lista_processos.length/2)
-    console.log(lista_processos)
-    for (var i = 1; i < lista_processos.length; i+=2) {
-        
-        res.innerHTML += `<div>
-            <div class="resultado_indi">
-                <div class="resultado_indi_informacoes" id=${lista_processos[i-1]}>
-                    <p class="resultado_nome">Interessado: ${lista_processos[i].interessado}</p>
-                    <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
-                    <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
-                </div>
-                <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
-                    <img src="./assets/img/excluir.png" alt="Icone Seta">
-                </div>
-            </button>
-        </div>`
-    } 
+    console.log('Constuindo processos pesquisados, tamanho: ', processo)
+
+    corpo.innerHTML = `<div id="id">
+                            <p>${variavel}</p>
+                        </div>
+                        <div id="info_pri" class="info">
+                            <p class="info_estilo">Nome do Interessado:<spam class="bold"> ${processo.interessado}</spam></p>
+                            <p class="info_estilo">Número do Processo:<spam class="bold"> ${processo.numeroProcesso}</spam></p>
+                            <p class="info_estilo">Data de Entrada:<spam class="bold"> ${processo.data}</spam></p>
+                        </div>
+                        <div id="info_sec" class="info">
+                            <p class="info_estilo">Destino:<spam class="bold"> ${processo.destino}</spam></p>
+                            <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam>${processo.assunto}</p>
+                            <p class="info_estilo justificado"><spam class="semi-bold">Observações: </spam>${processo.obs}</p>
+                        </div>`
 }
