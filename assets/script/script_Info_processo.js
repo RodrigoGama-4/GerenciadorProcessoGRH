@@ -53,8 +53,6 @@ function construir() {
                             <p class="info_estilo">Nome do Interessado:<spam class="bold"> ${processo.interessado}</spam></p>
                             <p class="info_estilo">Número do Processo:<spam class="bold"> ${processo.numeroProcesso}</spam></p>
                             <p class="info_estilo">Data de Entrada:<spam class="bold"> ${processo.data}</spam></p>
-                        </div>
-                        <div id="info_sec" class="info">
                             <p class="info_estilo">Destino:<spam class="bold"> ${processo.destino}</spam></p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam>${processo.assunto}</p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Observações: </spam>${processo.obs}</p>
