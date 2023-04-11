@@ -1,4 +1,4 @@
-import { sendData } from "./firebase/sendFirebase.js"
+import { sendData } from "./firebase/funcFirebase.js"
 
 // Pega todos os inputs
 var form = document.getElementById('formulario')
