@@ -108,6 +108,7 @@ async function identificandoIcones() {
             const docRef = doc(collection(db, "processo"), res);
             await deleteDoc(docRef);
             main()
+            //confirmarExclusao()
         })
     })
 }
@@ -152,4 +153,25 @@ async function getProcessos() {
     
 }
 
+/*function confirmarExclusao(){
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+    const confirmButton = document.getElementById("excluir");
+    const closeButton = document.getElementById("cancelar");
+    
+    confirmButton.addEventListener("Click", async () =>{
+        
+        var text = item.id;
+        var res = text.substring(0, 20)
+        const docRef = doc(collection(db, "processo"), res);
+        await deleteDoc(docRef);
+        main()
+        
+    })
 
+    closeButton.addEventListener("click", () => {
+        overlay.style.display = "none";
+    });
+}
+
+*/
