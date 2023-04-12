@@ -1,35 +1,43 @@
-import { db, addDoc, collection, getDocs, doc, query, where, deleteDoc } from './firebase/firebase.js'
+import { doc } from "./firebase/firebase.js"
+import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
 var lista_processos = []
 var form = document.getElementById('formulario')
 var t_busca = document.getElementById('busca')
-
-const resultado = ''
 var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
 
+// Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
-
     // impede o envio do form
     e.preventDefault();
 
+    // Mostra no console o termo buscado
     console.log('Busca: ', t_busca.value)
+
+    // Chama a função principal
     main();
 })
 
+
+// Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
 
     if (t_busca.value.length == 0){
-        await getProcessos()
+        // lista recebe os dados da função de pesquisa
+        lista_processos = await getProcessos()
+        // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
         res.style.border = '2px solid black'
         texto_fim.style.visibility = 'visible'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
         construirAll();
         texto_fim.style.visibility = 'visible'
     } else {
-        await getProcesso(t_busca.value)
+        // lista recebe os dados da função de pesquisa 
+        lista_processos = await getProcesso(t_busca.value)
+        // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
         res.style.border = '2px solid black'
         res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
         construir();
@@ -38,6 +46,8 @@ async function main() {
     
 }
 
+
+// Função que irá construir na tela os dados obtidos com a pesquisa com parametros
 function construir() {
     console.log('Constuindo processos pesquisados, tamanho: ', lista_processos.length/2)
     console.log(lista_processos)
@@ -56,11 +66,13 @@ function construir() {
             </button>
         </div>`
     } 
-
+    // Chamando as funções identificadoras
     identificandoDivs()
     identificandoIcones()
 }
 
+
+// Função que irá construir na tela os dados obtidos com a pesquisa de todos os elementos
 function construirAll() {
     console.log('Constuindo todos os processos, tamanho: ', lista_processos[0].length)
     console.log(lista_processos)
@@ -80,12 +92,13 @@ function construirAll() {
             </div>`
         }
     } 
-
+    // Chamando as funções identificadoras
     identificandoDivs()
     identificandoIcones()
 }
 
 
+// Função responsavel por identificar as divs. Cria um evento de clique em cada uma - a cada clique retorna o id correspondente no banco de dados
 function identificandoDivs() {
     var items = document.querySelectorAll('.resultado_indi_informacoes')
 
@@ -98,7 +111,9 @@ function identificandoDivs() {
     })
 }
 
-async function identificandoIcones() {
+
+//Função responsavel por identificar os icones. Cria um evento de clique em cada um - a cada clique retorna o id correspondente no banco de dados para que se possa fazer a exclusão
+function identificandoIcones() {
     var items = document.querySelectorAll('.resultado_indi_icone')
 
     items.forEach(function(item){
@@ -109,70 +124,46 @@ async function identificandoIcones() {
 }
 
 
-
+// Redireciona para a pagina que contem as informações do processo - passa na url o id da div clicada
 function dadosNovaPagina(dado){
     window.location = "/views/info_processo.html?id="+dado;
 }
 
 
-//TEMPORARIAMENTE FICA AQUI
-
-async function getProcesso(data) {
-    lista_processos = []
-    const c = query(collection(db, "processo"), where('data', '==', data)); 
-    const cSnapshot = await getDocs(c);
-    cSnapshot.forEach((doc) => {
-        lista_processos.unshift(doc.id, doc.data());
-    }); 
-  
-    //PESQUISA POR SUBSTRING
-    const snapshot = await getDocs(collection(db, "processo"));
-    const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    processos.forEach((processo) => {
-      const interessadoMinusculo = processo.interessado.toLowerCase();
-      const numProcMinusculo = processo.numeroProcesso.toLowerCase();
-      const destinoMinusculo = processo.destino.toLowerCase();
-      const subStringMinusculo = data.toLowerCase();
-      if (interessadoMinusculo.includes(subStringMinusculo) || numProcMinusculo.includes(subStringMinusculo) || destinoMinusculo.includes(subStringMinusculo)) {
-        lista_processos.unshift(processo);
-        lista_processos.unshift(processo.id);
-      }
-    });
-}
-
-//PESQUISA TODOS OS PROCESSOS
-async function getProcessos() {
-    const snapshot = await getDocs(collection(db, "processo"));
-    const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    lista_processos = []
-    lista_processos.unshift(processos)
-    
-}
-
-//CONFIRMAÇÃO DE EXCLUSÃO
+// Função para confirmar a exclusão
 function confirmarExclusao(item){
-    //ELEMENTO PARA IMPEDIR O USUARIO DE CLICAR FORA
-    const overlayBg = document.createElement('div');
+    // Elemento que impede o usuario de clicar fora do popup
+    let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
     document.body.appendChild(overlayBg);
 
-    //DIV PARA CONFIRMAR ELEMENTO EM SI
-    const overlay = document.getElementById('overlay')
+    // Cria o popup
+    let overlay = document.getElementById('overlay')
     overlay.style.display = "block";
-    const confirmButton = document.getElementById("excluir");
-    const closeButton = document.getElementById("cancelar");
+    let confirmButton = document.getElementById("excluir");
+    let closeButton = document.getElementById("cancelar");
 
     confirmButton.addEventListener("click", async () =>{
-        document.body.removeChild(overlayBg);
         var text = item.id;
         var res = text.substring(0, 20)
-        const docRef = doc(collection(db, "processo"), res);
-        await deleteDoc(docRef);
+
+        // Chamando função exluir
+        await excluir(res)
+
+        // Removendo background e tornando a janela invisivel
+        document.body.removeChild(overlayBg)
+        overlay.style.display = "none"
+
+        // Chamando novamente a função main
         main()
     })
-  
+    
+
+    // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
-        document.body.removeChild(overlayBg);
+        overlayBg = document.querySelector(".overlay-bg")
+        document.body.removeChild(overlayBg)
+        console.log("removido")
     });
   }
