@@ -46,10 +46,10 @@ auth.onAuthStateChanged(val => {
     }
 })
 
-const butao = document.getElementById('logar_google')
+/*const butao = document.getElementById('logar_google')
 butao.addEventListener("click", () =>{
     entrarComGoogle()
-})
+})*/
 
 export {
     db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc
