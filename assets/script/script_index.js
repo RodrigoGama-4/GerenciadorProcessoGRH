@@ -43,7 +43,6 @@ async function main() {
         construir();
         texto_fim.style.visibility = 'visible'
     }
-    
 }
 
 
@@ -52,13 +51,18 @@ function construir() {
     console.log('Constuindo processos pesquisados, tamanho: ', lista_processos.length/2)
     console.log(lista_processos)
     for (var i = 1; i < lista_processos.length; i+=2) {
-        
+
+        //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
+        let data = lista_processos[i].data;
+        let data_split = data.split('-');
+        let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+       
         res.innerHTML += `<div>
             <button class="resultado_indi">
                 <div class="resultado_indi_informacoes" id=${lista_processos[i-1]}>
                     <p class="resultado_nome">Interessado: ${lista_processos[i].interessado}</p>
                     <p class="resultado_numero">Nº Processo: ${lista_processos[i].numeroProcesso}</p>
-                    <p class="resultado_data">Data de Entrada: ${lista_processos[i].data}</p>
+                    <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                 </div>
                 <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
                     <img src="./assets/img/excluir.png" alt="Icone Seta">
@@ -78,12 +82,17 @@ function construirAll() {
     console.log(lista_processos)
     for (var i = 0; i < lista_processos.length; i++) {
         for (var j = 0; j < lista_processos[i].length; j++){
+            //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
+            let data = lista_processos[i][j].data;
+            let data_split = data.split('-');
+            let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+            
             res.innerHTML += `<div>
                 <button class="resultado_indi">
                     <div class="resultado_indi_informacoes" id=${lista_processos[i][j].id}>
                         <p class="resultado_nome">Interessado: ${lista_processos[i][j].interessado}</p>
                         <p class="resultado_numero">Nº Processo: ${lista_processos[i][j].numeroProcesso}</p>
-                        <p class="resultado_data">Data de Entrada: ${lista_processos[i][j].data}</p>
+                        <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                     </div>
                     <div class="resultado_indi_icone" id="${lista_processos[i][j].id}excluir">
                         <img src="./assets/img/excluir.png" alt="Icone Seta">
@@ -132,6 +141,10 @@ function dadosNovaPagina(dado){
 
 // Função para confirmar a exclusão
 function confirmarExclusao(item){
+    // Esconde a barra de rolagem 
+    var body = document.querySelector('body');
+    body.style.overflow = 'hidden';
+
     // Elemento que impede o usuario de clicar fora do popup
     let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
@@ -161,6 +174,7 @@ function confirmarExclusao(item){
 
     // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
     closeButton.addEventListener("click", () => {
+        body.style.overflow = '';
         overlay.style.display = "none";
         overlayBg = document.querySelector(".overlay-bg")
         document.body.removeChild(overlayBg)
