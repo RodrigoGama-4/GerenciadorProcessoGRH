@@ -103,12 +103,7 @@ async function identificandoIcones() {
 
     items.forEach(function(item){
         item.addEventListener('click', async function(event){
-            var text = item.id;
-            var res = text.substring(0, 20)
-            const docRef = doc(collection(db, "processo"), res);
-            await deleteDoc(docRef);
-            main()
-            //confirmarExclusao()
+            confirmarExclusao(item)
         })
     })
 }
@@ -145,6 +140,7 @@ async function getProcesso(data) {
     });
 }
 
+//PESQUISA TODOS OS PROCESSOS
 async function getProcessos() {
     const snapshot = await getDocs(collection(db, "processo"));
     const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -153,25 +149,30 @@ async function getProcessos() {
     
 }
 
-/*function confirmarExclusao(){
-    const overlay = document.getElementById("overlay");
+//CONFIRMAÇÃO DE EXCLUSÃO
+function confirmarExclusao(item){
+    //ELEMENTO PARA IMPEDIR O USUARIO DE CLICAR FORA
+    const overlayBg = document.createElement('div');
+    overlayBg.classList.add('overlay-bg');
+    document.body.appendChild(overlayBg);
+
+    //DIV PARA CONFIRMAR ELEMENTO EM SI
+    const overlay = document.getElementById('overlay')
     overlay.style.display = "block";
     const confirmButton = document.getElementById("excluir");
     const closeButton = document.getElementById("cancelar");
-    
-    confirmButton.addEventListener("Click", async () =>{
-        
+
+    confirmButton.addEventListener("click", async () =>{
+        document.body.removeChild(overlayBg);
         var text = item.id;
         var res = text.substring(0, 20)
         const docRef = doc(collection(db, "processo"), res);
         await deleteDoc(docRef);
         main()
-        
     })
-
+  
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
+        document.body.removeChild(overlayBg);
     });
-}
-
-*/
+  }
