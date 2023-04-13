@@ -141,10 +141,6 @@ function dadosNovaPagina(dado){
 
 // Função para confirmar a exclusão
 function confirmarExclusao(item){
-    // Esconde a barra de rolagem 
-    var body = document.querySelector('body');
-    body.style.overflow = 'hidden';
-
     // Elemento que impede o usuario de clicar fora do popup
     let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
@@ -174,10 +170,11 @@ function confirmarExclusao(item){
 
     // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
     closeButton.addEventListener("click", () => {
-        body.style.overflow = '';
         overlay.style.display = "none";
         overlayBg = document.querySelector(".overlay-bg")
-        document.body.removeChild(overlayBg)
-        console.log("removido")
+        if (overlayBg) {
+            document.body.removeChild(overlayBg)
+            console.log("removido")
+        }
     });
   }
