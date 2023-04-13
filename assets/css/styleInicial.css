@@ -6,7 +6,7 @@
 }
 
 body{
-    overflow: '';
+    overflow: hidden;
 }
 
 /* Header */
@@ -125,13 +125,15 @@ header img {
 
 #resultado {
     width: 90%;
-    min-height: 550px;
+    max-height: 40rem;
     border-radius: 10px;
     justify-content: center;
     text-align: center;
     align-items: center;
     margin: auto;
     padding: 20px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .resultado_quant {
@@ -222,21 +224,13 @@ footer {
     
   }
 
-  #overlay p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-
-  }
-
-  #overlay h1 {
+  .overlay_cont{
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
   }
-
+  
   .botoes-container {
     display: flex;
     flex-direction: column;

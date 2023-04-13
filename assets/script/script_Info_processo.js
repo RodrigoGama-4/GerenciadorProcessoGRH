@@ -40,14 +40,18 @@ function queryString() {
 // Função para construir com base no resultado da busca no banco
 function construir() {
     console.log('Constuindo processo pesquisado: ', processo)
+    let data = processo.data;
+    let data_split = data.split('-');
+    let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
 
     corpo.innerHTML = `<div id="id">
                             <p>${variavel}</p>
                         </div>
                         <div id="info_pri" class="info">
+                            <button class="editar_processo">EDITAR</button>
                             <p class="info_estilo">Nome do Interessado:<spam class="bold"> ${processo.interessado}</spam></p>
                             <p class="info_estilo">Número do Processo:<spam class="bold"> ${processo.numeroProcesso}</spam></p>
-                            <p class="info_estilo">Data de Entrada:<spam class="bold"> ${processo.data}</spam></p>
+                            <p class="info_estilo">Data de Entrada:<spam class="bold"> ${dataRefatorada}</spam></p>
                             <p class="info_estilo">Destino:<spam class="bold"> ${processo.destino}</spam></p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam>${processo.assunto}</p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Observações: </spam>${processo.obs}</p>
