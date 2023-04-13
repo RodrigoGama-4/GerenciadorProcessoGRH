@@ -8,7 +8,8 @@ import {
     getDoc,
     query,
     where,
-    deleteDoc
+    deleteDoc,
+    updateDoc
 } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js'
 
 
@@ -52,7 +53,7 @@ butao.addEventListener("click", () =>{
 })*/
 
 export {
-    db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc
+    db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc, updateDoc
 }
 
 

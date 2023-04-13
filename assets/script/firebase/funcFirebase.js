@@ -1,4 +1,4 @@
-import { db, addDoc, collection, getDocs, getDoc, doc, query, where, deleteDoc } from './firebase.js'
+import { db, addDoc, collection, getDocs, getDoc, doc, query, where, deleteDoc, updateDoc } from './firebase.js'
 
 
 // Envia os dados do processo para o firebase
@@ -75,5 +75,31 @@ async function excluir(res) {
     await deleteDoc(docRef);  
 }
 
+// Editar Documento. Falta colocar os parametros Desejados
+function atualizarDocumento(id) {
+    const docRef = doc(db, "processo", id);
+  
+    // Obter os dados do documento
+    getDoc(docRef)
+      .then((doc) => {
+        if (doc.exists()) {
+          console.log("Dados do documento:", doc.data());
+  
+          // Atualizar os campos do documento
+          return updateDoc(docRef, {
+            interessado: "Rodrigo",
+            numeroProcesso: "103892183948"
+          }, {merge: true}); //merge é preciso
+        } else {
+          console.log("O documento não existe!");
+        }
+      })
+      .then(() => {
+        console.log("Documento atualizado com sucesso!");
+      })
+      .catch((error) => {
+        console.log("Erro ao atualizar documento:", error);
+      });
+  }
 
-export {sendData, getProcesso, getProcessos, getProcessoID,excluir};
+export {sendData, getProcesso, getProcessos, getProcessoID,excluir, atualizarDocumento};
