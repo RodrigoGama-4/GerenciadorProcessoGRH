@@ -168,7 +168,7 @@ function confirmarExclusao(item){
     })
     
 
-    // ESTA DANDO ERRO QUANDO FECHA A JANELA PELA SEGUNDA VEZ SEGUIDA
+    // Fechar Janela de confirmação de exclusão
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
         overlayBg = document.querySelector(".overlay-bg")

@@ -76,30 +76,32 @@ async function excluir(res) {
 }
 
 // Editar Documento. Falta colocar os parametros Desejados
-function atualizarDocumento(id) {
-    const docRef = doc(db, "processo", id);
-  
-    // Obter os dados do documento
-    getDoc(docRef)
-      .then((doc) => {
-        if (doc.exists()) {
-          console.log("Dados do documento:", doc.data());
-  
-          // Atualizar os campos do documento
-          return updateDoc(docRef, {
-            interessado: "Rodrigo",
-            numeroProcesso: "103892183948"
-          }, {merge: true}); //merge é preciso
-        } else {
-          console.log("O documento não existe!");
-        }
-      })
-      .then(() => {
-        console.log("Documento atualizado com sucesso!");
-      })
-      .catch((error) => {
-        console.log("Erro ao atualizar documento:", error);
-      });
-  }
+function atualizarDocumento(id, interessado, numeroProcesso, destino, data) {
+  const docRef = doc(db, "processo", id);
+
+  // Obter os dados do documento
+  getDoc(docRef)
+    .then((doc) => {
+      if (doc.exists()) {
+        console.log("Dados do documento:", doc.data());
+
+        // Atualizar os campos do documento
+        return updateDoc(docRef, {
+          interessado: interessado,
+          numeroProcesso: numeroProcesso,
+          destino: destino,
+          data: data
+        }, {merge: true}); //merge é preciso
+      } else {
+        console.log("O documento não existe!");
+      }
+    })
+    .then(() => {
+      console.log("Documento atualizado com sucesso!");
+    })
+    .catch((error) => {
+      console.log("Erro ao atualizar documento:", error);
+    });
+}
 
 export {sendData, getProcesso, getProcessos, getProcessoID,excluir, atualizarDocumento};
