@@ -98,6 +98,7 @@ function atualizarDocumento(id, interessado, numeroProcesso, destino, data) {
     })
     .then(() => {
       console.log("Documento atualizado com sucesso!");
+      window.location.reload()//Atualiza a pagina com as mudanças.
     })
     .catch((error) => {
       console.log("Erro ao atualizar documento:", error);
