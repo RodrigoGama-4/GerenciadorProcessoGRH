@@ -1,4 +1,3 @@
-import { doc } from "./firebase/firebase.js"
 import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
 var lista_processos = []
@@ -8,6 +7,7 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
+main()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -17,6 +17,9 @@ form.addEventListener('submit', function(e) {
     // Mostra no console o termo buscado
     console.log('Busca: ', t_busca.value)
 
+    // Adiciona o termo buscado ao sessionStorage
+    addDadosSessao('busca', t_busca.value)
+
     // Chama a função principal
     main();
 })
@@ -25,23 +28,35 @@ form.addEventListener('submit', function(e) {
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
 
-    if (t_busca.value.length == 0){
-        // lista recebe os dados da função de pesquisa
-        lista_processos = await getProcessos()
-        // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
-        res.style.border = '2px solid black'
-        texto_fim.style.visibility = 'visible'
-        res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
-        construirAll();
-        texto_fim.style.visibility = 'visible'
+    if (getDadosSessao('busca')){
+        t_busca.value = getDadosSessao('busca')
+
+        if (t_busca.value == '*'){
+            // lista recebe os dados da função de pesquisa
+            lista_processos = await getProcessos()
+            // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+            res.style.border = '2px solid black'
+            texto_fim.style.visibility = 'visible'
+            res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
+            construirAll();
+            texto_fim.style.visibility = 'visible'
+            if (lista_processos[0].length > 4){
+                window.scroll(0, 250)
+            }
+        } else {
+            // lista recebe os dados da função de pesquisa 
+            lista_processos = await getProcesso(t_busca.value)
+            // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+            res.style.border = '2px solid black'
+            res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+            construir();
+            texto_fim.style.visibility = 'visible'
+            if (lista_processos.length > 4){
+                window.scroll(0, 250)
+            }
+        }
     } else {
-        // lista recebe os dados da função de pesquisa 
-        lista_processos = await getProcesso(t_busca.value)
-        // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
-        res.style.border = '2px solid black'
-        res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
-        construir();
-        texto_fim.style.visibility = 'visible'
+        console.log('Nenhum dado Salvo')
     }
 }
 
@@ -134,13 +149,13 @@ function identificandoIcones() {
 
 
 // Redireciona para a pagina que contem as informações do processo - passa na url o id da div clicada
-function dadosNovaPagina(dado){
+function dadosNovaPagina(dado) {
     window.location = "/views/info_processo.html?id="+dado;
 }
 
 
 // Função para confirmar a exclusão
-function confirmarExclusao(item){
+function confirmarExclusao(item) {
     // Elemento que impede o usuario de clicar fora do popup
     let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
@@ -177,4 +192,18 @@ function confirmarExclusao(item){
             console.log("removido")
         }
     });
-  }
+}
+
+
+function addDadosSessao(key, value) {
+    sessionStorage.setItem(key, value)
+}
+
+
+function getDadosSessao(key) {
+    if(sessionStorage.getItem(key) != "") {
+        return sessionStorage.getItem(key)
+    } else {
+        return false
+    }
+}
