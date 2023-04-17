@@ -4,11 +4,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/*
 body{
     overflow: hidden;
 }
-
+*/
 /* Header */
 header {
     display: flex;
@@ -44,21 +44,6 @@ header img {
     color: rgb(20, 120, 250);
     text-decoration: none;
 }
-
-/*
-#icone_config {
-    display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: right;
-    margin-right: 50px;
-    cursor: pointer;
-}
-
-#icone_config img {
-    height: 40px;
-}
-*/
 
 /* Campo pesquisa */
 
@@ -132,8 +117,8 @@ header img {
     align-items: center;
     margin: auto;
     padding: 20px;
-    overflow: hidden;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .resultado_quant {
@@ -192,9 +177,8 @@ footer {
 }
 
 
-
-
 /* TELA SOBREESCRITA PARA CONFIRMAR EXCLUSÃO*/
+
 #overlay {
     position: relative;
     top: -40rem;
