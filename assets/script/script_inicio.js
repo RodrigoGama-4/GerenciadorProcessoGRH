@@ -40,7 +40,7 @@ async function main() {
             res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
             construirAll();
             texto_fim.style.visibility = 'visible'
-            if (lista_processos[0].length > 4){
+            if (lista_processos[0].length >= 3){
                 window.scroll(0, 250)
             }
         } else {
@@ -57,6 +57,9 @@ async function main() {
         }
     } else {
         console.log('Nenhum dado Salvo')
+        res.innerHTML = ""
+        res.style.border = 'none'
+        texto_fim.style.visibility = 'hidden'
     }
 }
 
