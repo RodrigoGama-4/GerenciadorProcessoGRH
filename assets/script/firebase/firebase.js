@@ -18,6 +18,7 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
 
 
@@ -55,9 +56,8 @@ butao.addEventListener("click", () =>{
 
 export {
     db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc, updateDoc, auth,
-    signInWithEmailAndPassword, 
+    signInWithEmailAndPassword, onAuthStateChanged
+    
 }
-
-
 
 
