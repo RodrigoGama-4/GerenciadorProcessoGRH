@@ -109,14 +109,63 @@ header img {
 .p70 {
     width: 70%;
 }
+
 .p702 {
     width: 70.2%;
 }
+
 .p728 {
     width: 72.8%;
 }
+
 .p774 {
     width: 77.4%;
+}
+
+.editar_processo {
+    position: fixed;
+    top: 154px;
+    right: 20px;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+.editar_processo img {
+    width: 30px;
+    padding: 3px;
+}
+
+.editar_processo img:hover {
+    cursor: pointer;
+}
+
+.editar_processo:hover {
+    cursor: pointer;
+}
+
+#botoes {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+#botoes button {
+    font: 16px Arial normal;
+    padding: 7px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.editar_concluido:hover {
+    cursor: pointer;
+    background-color: #235bbd;
+    color: white;
+}
+
+.cancelar_concluido:hover {
+    cursor: pointer;
+    background-color: crimson;
+    color: white;
 }
 
 
