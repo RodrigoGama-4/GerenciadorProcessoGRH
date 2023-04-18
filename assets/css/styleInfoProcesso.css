@@ -92,6 +92,33 @@ header img {
     text-align: justify;
 }
 
+.textarea {
+    width: 98%;
+    resize: none;
+    padding: 10px;
+    font: 18px Arial normal;
+    margin-left: 9px;
+}
+
+.textarea_p{
+    font: 18px Arial normal;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.p70 {
+    width: 70%;
+}
+.p702 {
+    width: 70.2%;
+}
+.p728 {
+    width: 72.8%;
+}
+.p774 {
+    width: 77.4%;
+}
+
 
 /* RODAPÉ DO SITE */
 footer{
