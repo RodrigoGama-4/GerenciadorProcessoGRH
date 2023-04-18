@@ -48,15 +48,17 @@ function construir() {
                             <p>${variavel}</p>
                         </div>
                         <div id="info_pri" class="info">
-                            <button class="editar_processo">EDITAR</button>
+                            <button class="editar_processo"><img src="../assets/img/editar.png" alt="Icone de Edição"></button>
                             <p class="info_estilo">Nome do Interessado:<spam id ='textInteressado' class="bold"> ${processo.interessado}</spam></p>
                             <p class="info_estilo">Número do Processo:<spam id = 'textProcesso' class="bold"> ${processo.numeroProcesso}</spam></p>
                             <p class="info_estilo">Data de Entrada:<spam id = 'textData' class="bold"> ${dataRefatorada}</spam></p>
                             <p class="info_estilo">Destino:<spam id = 'textDestino' class="bold"> ${processo.destino}</spam></p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam><spam id='textAssunto'>${processo.assunto}</spam></p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Observações:<br/><br/></spam><spam id='textObs'>${processo.obs}</spam></p>
-                            <button class="editar_concluido" style="display: none;">ENVIAR EDIÇÕES</button>
-                            <button class="cancelar_concluido" style="display: none;">CANCELAR</button>
+                            <div id="botoes">
+                                <button class="editar_concluido" style="display: none;">ENVIAR EDIÇÕES</button>
+                                <button class="cancelar_concluido" style="display: none;">CANCELAR</button>
+                            </div>
                         </div>`
     editarProcesso()
 }
