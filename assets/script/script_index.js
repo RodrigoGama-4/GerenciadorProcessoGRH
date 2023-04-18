@@ -80,7 +80,7 @@ function construir() {
                     <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                 </div>
                 <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
-                    <img src="./assets/img/excluir.png" alt="Icone Seta">
+                    <img src="../assets/img/excluir.png" alt="Icone Seta">
                 </div>
             </button>
         </div>`
@@ -110,7 +110,7 @@ function construirAll() {
                         <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                     </div>
                     <div class="resultado_indi_icone" id="${lista_processos[i][j].id}excluir">
-                        <img src="./assets/img/excluir.png" alt="Icone Seta">
+                        <img src="../assets/img/excluir.png" alt="Icone Seta">
                     </div>
                 </button>
             </div>`
