@@ -1,4 +1,4 @@
-import { auth } from "./firebase.js";
+import { auth, onAuthStateChanged } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword,
@@ -9,6 +9,11 @@ const emailLogin = document.getElementById('username')
 const senhaLogin = document.getElementById('password')
 
 
+auth.onAuthStateChanged((user) =>{
+  if (user){
+    window.location.href = "../index.html";
+  }
+})
 
 
 
