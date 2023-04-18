@@ -76,7 +76,7 @@ async function excluir(res) {
 }
 
 // Editar Documento. Falta colocar os parametros Desejados
-function atualizarDocumento(id, interessado, numeroProcesso, destino, data) {
+function atualizarDocumento(id, interessado, numeroProcesso, destino, data, assunto, obs) {
   const docRef = doc(db, "processo", id);
 
   // Obter os dados do documento
@@ -90,7 +90,9 @@ function atualizarDocumento(id, interessado, numeroProcesso, destino, data) {
           interessado: interessado,
           numeroProcesso: numeroProcesso,
           destino: destino,
-          data: data
+          data: data,
+          assunto: assunto,
+          obs: obs
         }, {merge: true}); //merge é preciso
       } else {
         console.log("O documento não existe!");

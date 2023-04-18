@@ -53,8 +53,8 @@ function construir() {
                             <p class="info_estilo">Número do Processo:<spam id = 'textProcesso' class="bold"> ${processo.numeroProcesso}</spam></p>
                             <p class="info_estilo">Data de Entrada:<spam id = 'textData' class="bold"> ${dataRefatorada}</spam></p>
                             <p class="info_estilo">Destino:<spam id = 'textDestino' class="bold"> ${processo.destino}</spam></p>
-                            <p class="info_estilo justificado"><spam id='textAssunto' class="semi-bold">Assunto:<br/><br/></spam>${processo.assunto}</p>
-                            <p class="info_estilo justificado"><spam id = 'textOb' class="semi-bold">Observações: </spam>${processo.obs}</p>
+                            <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam><spam id='textAssunto'>${processo.assunto}</spam></p>
+                            <p class="info_estilo justificado"><spam class="semi-bold">Observações:<br/><br/></spam><spam id='textObs'>${processo.obs}</spam></p>
                             <button class="editar_concluido" style="display: none;">ENVIAR EDIÇÕES</button>
                             <button class="cancelar_concluido" style="display: none;">CANCELAR</button>
                         </div>`
@@ -70,25 +70,37 @@ function editarProcesso(){
         const data = document.querySelector("#textData");
         const destino = document.querySelector("#textDestino");
         const assunto = document.querySelector("#textAssunto");
-        const obs = document.querySelector("#textOb");
+        const obs = document.querySelector("#textObs");
+
+        console.log("Texto: "+assunto)
+        console.log("Texto: "+obs)
+        console.log(interessado)
         
         // Cria novos elementos <input> com os valores dos elementos <p> selecionados
         const inputInteressado = document.createElement("input");
+        inputInteressado.classList.add('textarea_p', 'p70')
         inputInteressado.value = interessado.textContent;
         
         const inputNumeroProcesso = document.createElement("input");
+        inputNumeroProcesso.classList.add('textarea_p', 'p702')
         inputNumeroProcesso.value = numeroProcesso.textContent;
         
         const inputData = document.createElement("input");
+        inputData.classList.add('textarea_p', 'p728')
         inputData.value = data.textContent;
         
         const inputDestino = document.createElement("input");
+        inputDestino.classList.add('textarea_p', 'p774')
         inputDestino.value = destino.textContent;
         
         const inputAssunto = document.createElement("textarea");
+        inputAssunto.classList.add('textarea')
+        inputAssunto.setAttribute('rows', '10')
         inputAssunto.value = assunto.textContent;
         
         const inputObs = document.createElement("textarea");
+        inputObs.classList.add('textarea')
+        inputObs.setAttribute('rows', '5')
         inputObs.value = obs.textContent;
 
         // Substitui os elementos <p> pelos elementos <input>
@@ -100,8 +112,10 @@ function editarProcesso(){
         data.parentNode.replaceChild(inputData, data);
         inputDestino.id = "textDestino"
         destino.parentNode.replaceChild(inputDestino, destino);
-        //assunto.parentNode.replaceChild(inputAssunto, assunto);
-        //obs.parentNode.replaceChild(inputObs, obs);
+        inputAssunto.id = "textAssunto"
+        assunto.parentNode.replaceChild(inputAssunto, assunto);
+        inputObs.id = "textObs"
+        obs.parentNode.replaceChild(inputObs, obs);
         
         // Exibe o botão "ENVIAR EDIÇÕES", "CANCELAR" e oculta o botão "EDITAR"
         document.querySelector(".editar_concluido").style.display = "block";
@@ -127,7 +141,13 @@ function editarProcesso(){
             const inputDestinoValor = document.querySelector("#textDestino");
             const valorInputDestino = inputDestinoValor.value
 
-            atualizarDocumento(variavel  ,valorInputInteressado, valorProcesso, valorInputDestino, valorData )
+            const inputAssunto = document.querySelector("#textAssunto");
+            const valorInputAssunto = inputAssunto.value
+
+            const inputObs = document.querySelector("#textObs");
+            const valorInputObs = inputObs.value
+
+            atualizarDocumento(variavel  ,valorInputInteressado, valorProcesso, valorInputDestino, valorData, valorInputAssunto, valorInputObs )
         });
           
     });
