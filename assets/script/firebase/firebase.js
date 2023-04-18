@@ -17,6 +17,7 @@ import {
     getAuth,
     signInWithPopup,
     GoogleAuthProvider,
+    signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
 
 
@@ -34,7 +35,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function entrarComGoogle() {
+/*function entrarComGoogle() {
 	const provider = new GoogleAuthProvider();
 	// fix: fornecer o objeto auth pra armazenar o estado de login
 	signInWithPopup(auth, provider);
@@ -53,7 +54,8 @@ butao.addEventListener("click", () =>{
 })*/
 
 export {
-    db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc, updateDoc
+    db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc, updateDoc, auth,
+    signInWithEmailAndPassword, 
 }
 
 
