@@ -1,14 +1,11 @@
-import { auth, onAuthStateChanged } from "./firebase.js";
-
-import {
-    signInWithEmailAndPassword,
-  } from './firebase.js';
+import { auth, onAuthStateChanged, signInWithEmailAndPassword } from "./firebase.js";
 
 const loginBtn = document.getElementById('botao_logar')
 const emailLogin = document.getElementById('username')
 const senhaLogin = document.getElementById('password')
 
 
+// Verificando se o usuario está logado - caso esteja, irá adicionar ao localStorage o status com valor true
 auth.onAuthStateChanged((user) =>{
   if (user){
     localStorage.setItem('status', 'true')
@@ -17,7 +14,7 @@ auth.onAuthStateChanged((user) =>{
 })
 
 
-
+// Caso não tenha status true no localStorage, carregar as informações do input e tentar fazer o login
 loginBtn.addEventListener('click', (e)=>{
   e.preventDefault()
   const emailLoginValor = emailLogin.value;
@@ -26,7 +23,7 @@ loginBtn.addEventListener('click', (e)=>{
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user)
-      window.location.href = "../index.html";
+      window.location.href = "views/inicio.html";
     } )
     .catch((error) => {
       alert('error: ' + error  );

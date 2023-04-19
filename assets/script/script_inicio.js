@@ -2,10 +2,13 @@ import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
 var status = localStorage.getItem('status')
 
-if (status == "true") {
-    console.log("Logado")
-} else {
-    window.location = "../index.html"
+function ver(){
+    if (status == "true") {
+        console.log("Logado")
+        main()
+    } else {
+        window.location = "../index.html"
+    }
 }
 
 var lista_processos = []
@@ -15,7 +18,7 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-main()
+ver()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -175,7 +178,7 @@ function identificandoIcones() {
 
 // Redireciona para a pagina que contem as informações do processo - passa na url o id da div clicada
 function dadosNovaPagina(dado) {
-    window.location = "/views/info_processo.html?id="+dado;
+    window.location = "../views/info_processo.html?id="+dado;
 }
 
 
@@ -220,15 +223,23 @@ function confirmarExclusao(item) {
 }
 
 
+// Função para adicionar ao sessionStorage termo pesquisado
 function addDadosSessao(key, value) {
     sessionStorage.setItem(key, value)
 }
 
 
+// Função para pegar o termo pesquisado do sessionStorage
 function getDadosSessao(key) {
     if(sessionStorage.getItem(key) != "") {
         return sessionStorage.getItem(key)
     } else {
         return false
     }
+}
+
+
+// Função para selecionar o texto quando clicar no campo de pesquisa
+function select() {
+    t_busca.select()
 }

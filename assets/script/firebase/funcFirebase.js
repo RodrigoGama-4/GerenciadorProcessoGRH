@@ -75,6 +75,7 @@ async function excluir(res) {
     await deleteDoc(docRef);  
 }
 
+
 // Editar Documento. Falta colocar os parametros Desejados
 function atualizarDocumento(id, interessado, numeroProcesso, destino, data, assunto, obs) {
   const docRef = doc(db, "processo", id);

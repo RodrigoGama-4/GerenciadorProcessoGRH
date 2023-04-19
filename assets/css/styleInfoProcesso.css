@@ -41,19 +41,6 @@ header img {
     text-decoration: none;
 }
 
-/* Talvez não precise disso - titulo na pagina
-#titulo {
-    text-align: center;
-    justify-content: center;
-    padding: 20px;
-    margin-bottom: 10px;
-}
-
-#titulo_text {
-    font-size: 32px;
-}
-*/
-
 
 /* Informações */
 #id {
@@ -151,20 +138,30 @@ header img {
 
 #botoes button {
     font: 16px Arial normal;
-    padding: 7px;
+    padding: 12px;
     border-radius: 7px;
     border: 1px solid black;
 }
 
+.editar_concluido {
+    background-color: #235bbd;
+    color: white;
+}
+
+.cancelar_concluido {
+    background-color: crimson;
+    color: white;
+}
+
 .editar_concluido:hover {
     cursor: pointer;
-    background-color: #235bbd;
+    background-color: #115fe6;
     color: white;
 }
 
 .cancelar_concluido:hover {
     cursor: pointer;
-    background-color: crimson;
+    background-color: rgb(255, 0, 51);
     color: white;
 }
 
