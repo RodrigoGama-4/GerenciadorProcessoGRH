@@ -40,9 +40,17 @@ function queryString() {
 // Função para construir com base no resultado da busca no banco
 function construir() {
     console.log('Constuindo processo pesquisado: ', processo)
-    let data = processo.data;
-    let data_split = data.split('-');
-    let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+    //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
+    const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    let dataRefatorada = processo.data
+
+
+    if (regex.test(processo.data)) {
+        let data = processo.data;
+        let data_split = data.split('-');
+        dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+        //console.log('A string está no formato esperado');
+      }     
 
     corpo.innerHTML = `<div id="id">
                             <p>${variavel}</p>
