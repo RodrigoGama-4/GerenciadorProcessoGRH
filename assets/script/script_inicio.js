@@ -235,3 +235,7 @@ function getDadosSessao(key) {
         return false
     }
 }
+
+function select() {
+    t_busca.select()
+}
