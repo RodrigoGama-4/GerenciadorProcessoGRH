@@ -26,7 +26,7 @@ loginBtn.addEventListener('click', (e)=>{
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user)
-      window.location.href = "../index.html";
+      window.location.href = "views/inicio.html";
     } )
     .catch((error) => {
       alert('error: ' + error  );
