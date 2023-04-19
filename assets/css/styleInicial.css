@@ -233,15 +233,21 @@ footer {
 
 #excluir {
     background-color: crimson;
-    color: rgb(237, 237, 237);
+    color: rgb(245, 245, 245);
 }
 
 #excluir:hover {
     background-color: rgb(255, 0, 51);
+    color: white;
     cursor: pointer;
+}
+
+#cancelar {
+    background-color: rgb(224, 224, 224);
 }
 
 #cancelar:hover{
     cursor: pointer;
+    background-color: white;
 }
   
