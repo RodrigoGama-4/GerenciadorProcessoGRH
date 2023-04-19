@@ -36,28 +36,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/*function entrarComGoogle() {
-	const provider = new GoogleAuthProvider();
-	// fix: fornecer o objeto auth pra armazenar o estado de login
-	signInWithPopup(auth, provider);
-}
-
-//entrarComGoogle(); 
-auth.onAuthStateChanged(val => {
-    if (val){
-        console.log('Logado com sucesso')
-    }
-})
-
-/*const butao = document.getElementById('logar_google')
-butao.addEventListener("click", () =>{
-    entrarComGoogle()
-})*/
 
 export {
     db, doc, addDoc, collection, getDocs, getDoc, query, where, deleteDoc, updateDoc, auth,
     signInWithEmailAndPassword, onAuthStateChanged
     
 }
-
-

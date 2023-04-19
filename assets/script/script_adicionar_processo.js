@@ -2,6 +2,8 @@ import { sendData } from "./firebase/funcFirebase.js"
 
 var status = localStorage.getItem('status')
 
+
+// Função para verificar se o status no localStorage é true - controle de login
 function ver(){
     if (status == "true") {
         console.log("Logado")
@@ -10,7 +12,9 @@ function ver(){
     }
 }
 
+
 ver()
+
 
 // Pega todos os inputs
 var form = document.getElementById('formulario')
@@ -20,6 +24,7 @@ var data = document.getElementById('data')
 var desti = document.getElementById('destino')
 var assunto = document.getElementById('assunto')
 var obs = document.getElementById('obs')
+
 
 // Fica esperando que occora um evento de envio (submit) para que possa realizar as funções
 form.addEventListener('submit', function(e){
@@ -48,6 +53,7 @@ form.addEventListener('submit', function(e){
     }
 })
 
+
 // Verifica se existe campos vazios
 function verificacao(n, i, d, de, a) {
     if (n == "" || i == "" || d == "" || de == "" || a == "") {
@@ -57,11 +63,14 @@ function verificacao(n, i, d, de, a) {
     }
 }
 
+
 // Função chama a função enviar do firebase
 async function enviar() {
     await sendData(numero.value, interessado.value, data.value, desti.value, assunto.value, obs.value)
 }
 
+
+// Função para limpar os campos quando o processo for enviado com sucesso
 function limparCampos() {
     form.value = ""
     numero.value = ""

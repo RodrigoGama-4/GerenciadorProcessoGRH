@@ -223,11 +223,13 @@ function confirmarExclusao(item) {
 }
 
 
+// Função para adicionar ao sessionStorage termo pesquisado
 function addDadosSessao(key, value) {
     sessionStorage.setItem(key, value)
 }
 
 
+// Função para pegar o termo pesquisado do sessionStorage
 function getDadosSessao(key) {
     if(sessionStorage.getItem(key) != "") {
         return sessionStorage.getItem(key)

@@ -2,6 +2,8 @@ import { getProcessoID, atualizarDocumento } from './firebase/funcFirebase.js'
 
 var status = localStorage.getItem('status')
 
+
+// Função para verificar se o status no localStorage é true - controle de login
 function ver(){
     if (status == "true") {
         console.log("Logado")
@@ -16,7 +18,6 @@ var processo;
 var corpo = document.getElementById('corpo')
 
 
-// Ao abrir a página a função principal será chamada
 ver()
 
 
@@ -81,6 +82,7 @@ function construir() {
                         </div>`
     editarProcesso()
 }
+
 
 // Adiciona um ouvinte de eventos para o botão "EDITAR"
 function editarProcesso(){
