@@ -238,6 +238,8 @@ function getDadosSessao(key) {
     }
 }
 
+
+// Função para selecionar o texto quando clicar no campo de pesquisa
 function select() {
     t_busca.select()
 }
