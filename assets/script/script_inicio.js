@@ -175,7 +175,7 @@ function identificandoIcones() {
 
 // Redireciona para a pagina que contem as informações do processo - passa na url o id da div clicada
 function dadosNovaPagina(dado) {
-    window.location = "/views/info_processo.html?id="+dado;
+    window.location = "../views/info_processo.html?id="+dado;
 }
 
 
