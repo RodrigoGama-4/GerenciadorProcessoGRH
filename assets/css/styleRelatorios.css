@@ -41,68 +41,6 @@ header img {
     text-decoration: none;
 }
 
-/* Codigo antigo
-
-CABEÇALHO DO SITE 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #446cb3;   
-}
-  
-header img {
-    margin-left: 20px;
-    height: 100px;
-}
-  
-.links{
-    position: relative;
-    text-decoration: none;
-    color: white;
-    font-size: 2rem;
-}
-  
-TRANSIÇÃO DOS LINKS 
-.links::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #254e94;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.3s ease-in-out;
-}
-    
-.links:hover::after {
-    visibility: visible;
-    transform: scaleX(1);
-}
-    
-.links:hover {
-    color: #13397a;
-}
-  
-  
-#icone_config{
-    font-size: 1rem;
-    padding-top: 4rem;
-}
-  
-#menu_principal {
-    display: inline-flex;
-    text-decoration: none;
-    padding-top: 2rem;
-    padding-left: 10%;
-}
-  
-#menu_principal p{
-    margin-inline: 3rem;
-}
-*/
 
 /*TITULO DA PAGINA CENTRAL*/
 #m_titulo{
