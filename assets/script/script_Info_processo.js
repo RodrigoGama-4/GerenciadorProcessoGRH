@@ -2,10 +2,13 @@ import { getProcessoID, atualizarDocumento } from './firebase/funcFirebase.js'
 
 var status = localStorage.getItem('status')
 
-if (status == "true") {
-    console.log("Logado")
-} else {
-    window.location = "../index.html"
+function ver(){
+    if (status == "true") {
+        console.log("Logado")
+        main()
+    } else {
+        window.location = "../index.html"
+    }
 }
 
 var variavel;
@@ -14,7 +17,7 @@ var corpo = document.getElementById('corpo')
 
 
 // Ao abrir a página a função principal será chamada
-main()
+ver()
 
 
 // Função principal que chama a função com os comandos

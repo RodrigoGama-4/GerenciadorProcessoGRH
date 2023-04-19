@@ -2,10 +2,13 @@ import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
 var status = localStorage.getItem('status')
 
-if (status == "true") {
-    console.log("Logado")
-} else {
-    window.location = "../index.html"
+function ver(){
+    if (status == "true") {
+        console.log("Logado")
+        main()
+    } else {
+        window.location = "../index.html"
+    }
 }
 
 var lista_processos = []
@@ -15,7 +18,7 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-main()
+ver()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 

@@ -2,11 +2,15 @@ import { sendData } from "./firebase/funcFirebase.js"
 
 var status = localStorage.getItem('status')
 
-if (status == "true") {
-    console.log("Logado")
-} else {
-    window.location = "../index.html"
+function ver(){
+    if (status == "true") {
+        console.log("Logado")
+    } else {
+        window.location = "../index.html"
+    }
 }
+
+ver()
 
 // Pega todos os inputs
 var form = document.getElementById('formulario')
