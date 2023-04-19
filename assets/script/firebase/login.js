@@ -11,6 +11,7 @@ const senhaLogin = document.getElementById('password')
 
 auth.onAuthStateChanged((user) =>{
   if (user){
+    localStorage.setItem('status', 'true')
     window.location.href = "views/inicio.html";
   }
 })

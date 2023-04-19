@@ -1,5 +1,13 @@
 import { getProcessoID, atualizarDocumento } from './firebase/funcFirebase.js'
 
+var status = localStorage.getItem('status')
+
+if (status == "true") {
+    console.log("Logado")
+} else {
+    window.location = "../index.html"
+}
+
 var variavel;
 var processo;
 var corpo = document.getElementById('corpo')
