@@ -1,5 +1,13 @@
 import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
 
+var status = localStorage.getItem('status')
+
+if (status == "true") {
+    console.log("Logado")
+} else {
+    window.location = "../index.html"
+}
+
 var lista_processos = []
 var form = document.getElementById('formulario')
 var t_busca = document.getElementById('busca')
