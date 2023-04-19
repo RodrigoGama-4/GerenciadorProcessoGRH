@@ -13,7 +13,7 @@ body{
 header {
     display: flex;
     padding: 5px 0;
-    background-color: #235bbd;
+    background-color: rgb(35, 91, 189);
     border-bottom: 1px solid rgb(50, 17, 230);
 }
 
@@ -180,19 +180,19 @@ footer {
 /* TELA SOBREESCRITA PARA CONFIRMAR EXCLUSÃO*/
 
 #overlay {
-    position: relative;
-    top: -40rem;
+    position: fixed;
+    top: 250px;
     left: 30%;
     width: 40%;
     height: 40%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(35, 91, 189, 0.8);
     display: none;
     z-index: 2;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .overlay-bg {
+.overlay-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -200,30 +200,52 @@ footer {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
-  }
+}
 
-  .botoes{
+.botoes{
     width: 150px;
-    height: 30px;
-    
-  }
+    height: 50px;
+    border-radius: 8px;
+    vertical-align: baseline;
+}
 
-  .overlay_cont{
+#texto {
+    padding: 50px;
+}
+
+#texto h1 {
+    color: rgb(255, 70, 70);
+}
+
+#texto h3 {
+    margin-top: 20px;
+}
+
+.overlay_cont{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-  }
+    color: rgb(229, 229, 229);
+}
   
-  .botoes-container {
+.botoes-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 90px; 
-  }
+    justify-content: space-around;
+    padding: 50px;
+    margin-top: 7%; 
+}
 
-  #cancelar{
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
+#excluir {
+    background-color: crimson;
+    color: rgb(237, 237, 237);
+}
+
+#excluir:hover {
+    background-color: rgb(255, 0, 51);
+    cursor: pointer;
+}
+
+#cancelar:hover{
+    cursor: pointer;
+}
   

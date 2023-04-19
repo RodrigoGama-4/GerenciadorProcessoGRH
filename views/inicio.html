@@ -51,10 +51,13 @@
     
     <!--Começa invisivel. Div responsavel pela confirmação de exclusão -->
     <div id="overlay" style="display: none;">
-        <h1 class="overlay_cont">EXCLUIR PROCESSO?</h1>
-        <p class="overlay_cont">Essa ação não poderá ser desfeita, e ele será removido do seu banco de dados</p>
+        <div id="texto">
+            <h1 class="overlay_cont">EXCLUIR PROCESSO?</h1>
+            <h3 class="overlay_cont">Essa ação não poderá ser desfeita</h3>
+            <h3 class="overlay_cont">O Processo será REMOVIDO permanentemente</h3>
+        </div>
         <div class="botoes-container">
-            <button class="botoes" id="excluir" style="background-color: red;">EXCLUIR</button>
+            <button class="botoes" id="excluir" valu>EXCLUIR</button>
             <button class="botoes" id="cancelar">CANCELAR</button>
         </div>
     </div>
