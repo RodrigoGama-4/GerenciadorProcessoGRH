@@ -185,7 +185,6 @@ footer {
     background-color: rgba(35, 91, 189, 0.8);
     display: none;
     z-index: 2;
-    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -202,8 +201,8 @@ footer {
 .botoes{
     width: 150px;
     height: 50px;
-    border-radius: 8px;
     vertical-align: baseline;
+    border: none;
 }
 
 #texto {
