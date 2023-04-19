@@ -69,12 +69,18 @@ function construir() {
     console.log('Constuindo processos pesquisados, tamanho: ', lista_processos.length/2)
     console.log(lista_processos)
     for (var i = 1; i < lista_processos.length; i+=2) {
-
         //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
-        let data = lista_processos[i].data;
-        let data_split = data.split('-');
-        let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
-       
+        const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+        let dataRefatorada = lista_processos[i].data;
+
+
+        if (regex.test(lista_processos[i].data)) {
+            let data = lista_processos[i].data;
+            let data_split = data.split('-');
+            dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+            //console.log('A string está no formato esperado');
+        }  
+        
         res.innerHTML += `<div>
             <button class="resultado_indi">
                 <div class="resultado_indi_informacoes" id=${lista_processos[i-1]}>
@@ -101,9 +107,17 @@ function construirAll() {
     for (var i = 0; i < lista_processos.length; i++) {
         for (var j = 0; j < lista_processos[i].length; j++){
             //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
-            let data = lista_processos[i][j].data;
-            let data_split = data.split('-');
-            let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+            const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+            let dataRefatorada = lista_processos[i][j].data;
+
+
+            if (regex.test(lista_processos[i][j].data)) {
+                let data = lista_processos[i][j].data;
+                let data_split = data.split('-');
+                dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+                //console.log('A string está no formato esperado');
+            }  
+            
             
             res.innerHTML += `<div>
                 <button class="resultado_indi">
