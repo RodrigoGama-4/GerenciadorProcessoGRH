@@ -40,7 +40,7 @@ async function main() {
             res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos[0].length} processos.</p></div>`
             construirAll();
             texto_fim.style.visibility = 'visible'
-            if (lista_processos[0].length > 4){
+            if (lista_processos[0].length >= 3){
                 window.scroll(0, 250)
             }
         } else {
@@ -57,6 +57,9 @@ async function main() {
         }
     } else {
         console.log('Nenhum dado Salvo')
+        res.innerHTML = ""
+        res.style.border = 'none'
+        texto_fim.style.visibility = 'hidden'
     }
 }
 
@@ -80,7 +83,7 @@ function construir() {
                     <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                 </div>
                 <div class="resultado_indi_icone" id="${lista_processos[i-1]}excluir">
-                    <img src="./assets/img/excluir.png" alt="Icone Seta">
+                    <img src="../assets/img/excluir.png" alt="Icone Seta">
                 </div>
             </button>
         </div>`
@@ -110,7 +113,7 @@ function construirAll() {
                         <p class="resultado_data">Data de Entrada: ${dataRefatorada}</p>
                     </div>
                     <div class="resultado_indi_icone" id="${lista_processos[i][j].id}excluir">
-                        <img src="./assets/img/excluir.png" alt="Icone Seta">
+                        <img src="../assets/img/excluir.png" alt="Icone Seta">
                     </div>
                 </button>
             </div>`

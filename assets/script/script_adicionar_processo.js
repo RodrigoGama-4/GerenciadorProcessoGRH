@@ -29,6 +29,7 @@ form.addEventListener('submit', function(e){
 
         // Confirmação de envio
         alert('Enviado')
+        limparCampos()
     } else {
         // Confirmação de erro
         alert("ERRO! Não é possivel adicionar. Verifique se adicionou todos os dados e tente novamente!")
@@ -47,4 +48,14 @@ function verificacao(n, i, d, de, a) {
 // Função chama a função enviar do firebase
 async function enviar() {
     await sendData(numero.value, interessado.value, data.value, desti.value, assunto.value, obs.value)
+}
+
+function limparCampos() {
+    form.value = ""
+    numero.value = ""
+    interessado.value = ""
+    data.value = ""
+    desti.value = ""
+    assunto.value = ""
+    obs.value = ""
 }
