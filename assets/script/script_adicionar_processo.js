@@ -49,26 +49,35 @@ form.addEventListener('submit', function(e){
         limparCampos()
     } else {
         // Confirmação de erro
-        alert("ERRO! Não é possivel adicionar. Verifique se adicionou todos os dados e tente novamente!")
+        alert("ERRO! Não é possivel adicionar. Verifique se adicionou todos os dados corretamente e tente novamente!")
     }
 })
 
 
-// Verifica se existe campos vazios
-function verificacao(n, i, d, de, a) {
-    if (n == "" || i == "" || d == "" || de == "" || a == "") {
-        return false
-    } else {
+// Verifica as entradas do usuário
+function verificacao(numProc, inte, dat, desti, assun) {
+    //Verica o numero do processo
+    const regexNumeroProcesso = /^23065\.\d{6}\/\d{4}-\d{2}$/;
+    //Verifica inputs vazios e tags html
+    const regexGeral = /^(?!\s*$)(?!.*(<|>))(?!.*\b(on\w+))/;
+    
+
+    if (regexGeral.test(numProc) && regexNumeroProcesso.test(numProc) && regexGeral.test(inte) && regexGeral.test(dat) && regexGeral.test(desti) && regexGeral.test(assun))  {
         return true
+    } else {
+        return false
     }
 }
 
 
 // Função chama a função enviar do firebase
 async function enviar() {
-    await sendData(numero.value, interessado.value, data.value, desti.value, assunto.value, obs.value)
+    //Verifica o OBS tags html/js
+    const regexTag = /^[^<>]+$/; 
+    if (regexTag.test(obs.value)){
+        await sendData(numero.value, interessado.value, data.value, desti.value, assunto.value, obs.value)
+    }   
 }
-
 
 // Função para limpar os campos quando o processo for enviado com sucesso
 function limparCampos() {

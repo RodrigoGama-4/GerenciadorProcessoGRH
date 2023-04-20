@@ -103,28 +103,34 @@ function editarProcesso(){
         const inputInteressado = document.createElement("input");
         inputInteressado.classList.add('textarea_p', 'p70')
         inputInteressado.value = interessado.textContent;
+        inputInteressado.maxLength = 150;
         
         const inputNumeroProcesso = document.createElement("input");
         inputNumeroProcesso.classList.add('textarea_p', 'p702')
         inputNumeroProcesso.value = numeroProcesso.textContent;
+        inputNumeroProcesso.maxLength = 100;
         
         const inputData = document.createElement("input");
         inputData.classList.add('textarea_p', 'p728')
         inputData.value = data.textContent;
+        inputData.maxLength = 15;
         
         const inputDestino = document.createElement("input");
         inputDestino.classList.add('textarea_p', 'p774')
         inputDestino.value = destino.textContent;
+        inputDestino.maxLength = 100;
         
         const inputAssunto = document.createElement("textarea");
         inputAssunto.classList.add('textarea')
         inputAssunto.setAttribute('rows', '10')
         inputAssunto.value = assunto.textContent;
+        inputAssunto.maxLength = 150;
         
         const inputObs = document.createElement("textarea");
         inputObs.classList.add('textarea')
         inputObs.setAttribute('rows', '5')
         inputObs.value = obs.textContent;
+        inputObs.maxLength = 150;
 
         // Substitui os elementos <p> pelos elementos <input>
         inputInteressado.id = "textInteressado"
@@ -170,9 +176,31 @@ function editarProcesso(){
             const inputObs = document.querySelector("#textObs");
             const valorInputObs = inputObs.value
 
-            atualizarDocumento(variavel  ,valorInputInteressado, valorProcesso, valorInputDestino, valorData, valorInputAssunto, valorInputObs )
+           if (verificacao(valorProcesso, valorInputInteressado,valorData  ,valorInputDestino, valorInputAssunto)){
+                alert('Editado com sucesso')
+                atualizarDocumento(variavel  ,valorInputInteressado, valorProcesso, valorInputDestino, valorData, valorInputAssunto, valorInputObs )
+            }
+            else{
+                alert("ERRO! Não é possivel adicionar. Verifique se adicionou todos os dados corretamente e tente novamente!")
+            }
+
         });
           
     });
+ 
+}
 
+
+// Verifica as entradas do usuário
+function verificacao(numProc, inte, dat, desti, assun) {
+    //Verica o numero do processo
+    const regexNumeroProcesso = /^23065\.\d{6}\/\d{4}-\d{2}$/;
+    //Verifica inputs vazios e tags html
+    const regexGeral = /^(?!\s*$)(?!.*(<|>))(?!.*\b(on\w+))/;
+
+    if (regexGeral.test(numProc) && regexNumeroProcesso.test(numProc) && regexGeral.test(inte) && regexGeral.test(dat) && regexGeral.test(desti) && regexGeral.test(assun))  {
+        return true
+    } else {
+        return false
+    }
 }
