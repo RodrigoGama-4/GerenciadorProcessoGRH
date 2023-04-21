@@ -41,6 +41,23 @@ header img {
     text-decoration: none;
 }
 
+@media only screen and (max-width: 780px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menu_principal {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #menu_principal p {
+        margin: 0;
+        font-size: 18px;
+    }
+}
+
 
 /*TITULO DA PAGINA CENTRAL*/
 #m_titulo{

@@ -9,7 +9,7 @@
 header {
   display: flex;
   padding: 5px 0;
-  background-color: rgb(35, 91, 189);
+  background-color: #235bbd;
   border-bottom: 1px solid rgb(50, 17, 230);
 }
 
@@ -41,6 +41,23 @@ header img {
   text-decoration: none;
 }
 
+@media only screen and (max-width: 780px) {
+  header {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #menu_principal {
+      width: 100%;
+      margin-top: 20px;
+  }
+
+  #menu_principal p {
+      margin: 0;
+      font-size: 18px;
+  }
+}
+
 
 /*TITULO DA PAGINA CENTRAL*/
 
@@ -69,6 +86,7 @@ header img {
 /* FORM DE ADICIONAR PROCESSOS*/
 
 #form_add{
+  max-width: 1000px;
   align-items: center;
   justify-content: center;
   border: 2px solid black;
@@ -111,6 +129,21 @@ header img {
 #enviar:hover {
   background-color: #0845af;
 }
+
+@media screen and (max-width: 780px) {
+  #nome_secao_principal{
+    font-size: 25px;
+  }
+
+  #form_add_form {
+    font-size: 16px;
+  }
+
+  #botao {
+    text-align: center;
+  }
+}
+
 
 /* RODAPÉ DO SITE */
 .rodape{
