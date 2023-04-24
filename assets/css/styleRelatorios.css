@@ -5,158 +5,126 @@
     box-sizing: border-box;
 }
 
-/* Header */
+/* HEADER - MENU */
+
 header {
+    height: 150px;
     display: flex;
-    padding: 5px 0;
+    flex-direction: row;
     background-color: #235bbd;
-    border-bottom: 1px solid rgb(50, 17, 230);
+    border-bottom: 2px solid black;
 }
 
-header img {
-    margin-left: 20px;
-    height: 100px;
+#logo {
+    vertical-align: middle;
+}
+
+#logo img {
+    width: 125px;
 }
 
 #menu_principal {
+    height: 80px;
+    margin: auto;
+}
+
+#menu_principal_lista {
+    list-style: none;
     display: flex;
-    width: 70%;
-    align-items: center;
-    justify-content: space-around;
 }
 
-#menu_principal p {
+#menu_principal_lista li {
     margin: 0 50px;
-    font-size: 24px;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
-#menu_principal p a {
-    color: white;
+#menu_principal_lista a {
+    font: 24px Arial normal;
     text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+#menu_principal_lista a:hover {
+    color: #173e82;
     transition: 0.2s;
 }
 
-#menu_principal p a:hover {
-    color: rgb(20, 120, 250);
-    text-decoration: none;
+.blue {
+    color: #173e82;
+    border-bottom: 2px solid #173e82;
+}
+
+.texto {
+    text-align: center;
+}
+
+#menu_principal_lista img {
+    width: 40px; 
+    margin-bottom: 7px;
+    vertical-align: middle;
+}
+
+#sair {
+    display: flex;
+    align-items: flex-end;
+}
+
+#sair:hover {
+    cursor: pointer;
+}
+
+#sair img {
+    width: 40px;
+    margin: auto 10px;
 }
 
 @media only screen and (max-width: 780px) {
     header {
         flex-direction: column;
-        align-items: center;
+        align-items:  center;
+        height: 300px;
     }
 
-    #menu_principal {
-        width: 100%;
-        margin-top: 20px;
+    .texto {
+        visibility: hidden;
     }
 
-    #menu_principal p {
+    #menu_principal ul li{
+        justify-content: space-between;
+    }
+
+    #menu_principal_lista li {
         margin: 0;
-        font-size: 18px;
     }
-}
 
+    #menu_principal_lista a {
+        font-size: 5px;
+    }
 
-/*TITULO DA PAGINA CENTRAL*/
-#m_titulo{
-    position: relative;
-    text-align: center;
-    padding-bottom: 4rem;
-    height: 100%;
-    width: 100%;
-}
-  
-/* FORM DE ADICIONAR PROCESSOS*/
-#form_add{
-    position: absolute;
-    border: 2px solid black;
-    border-radius: 25px;
-    height: 30rem;
-    width: 80%;
-    left: 10%;
-    bottom: 31%;
-}
-  
-#form_add_titulo{
-    background-color: white; 
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-    border: 2px solid black;
-    border-radius: 10px;
-    width: 15rem;
-    position: absolute;
-    left: 50.5%;
-    transform: translate(-50%, 100%);
-}
- 
-/* FORMULARIO  */
-form label {
-    padding-top: 2rem;
-    display: block;
-    margin-bottom: 5px;
-}
-form input[type="text"],
-form input[type="email"],
-form textarea {
-    display: block;
-    width: 92%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-    
-form input[type="text"]::placeholder,
-form input[type="email"]::placeholder,
-form textarea::placeholder {
-    color: #999;
-}
-    
-form input[type="submit"] {
-    display: block;
-    padding: 10px;
-    background-color: #446cb3;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 20px auto;
-}
-    
-form input[type="submit"]:hover {
-    background-color: #0069d9;
+    #menu_principal_lista img {
+        width: 50px;
+        margin: auto 20px;
+    }
+
+    #menu_principal_lista li {
+        margin: 0 auto;
+    }
+
+    #sair {
+        margin: auto;
+    }
 }
 
 /* SEÇÃO PRINCIPAL*/
-.secao_principal{
-    margin: 0 20px;
-    margin-top: 1rem;
-    height: 48rem;
-    border: 2px solid black;
-}
 
-.nome_secao_principal{
-    display: flex;
-    justify-content: center;
-}
-
-.resultado_pesquisa{
-    position: absolute;
-    border: 2px solid black;
-    border-radius: 25px;
-    left: 8%;
-    width: 85%;
-    height: 60%;
-    
+#nome_secao_principal{
+    padding: 100px;
+    text-align: center;
 }
 
 /* RODAPÉ DO SITE */
-.rodape{
-    padding-top: 32rem;
-    display: flex;
-    justify-content: center;
+footer{
+    padding-top: 100px;
+    text-align: center;
 }

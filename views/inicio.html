@@ -10,17 +10,35 @@
 </head>
 <body>
     <header>
-        <div id="logo_ufal">
-            <img src="../assets/img/png.png" alt="Logo UFAL">
+        <div id="logo">
+            <img src="../assets/img/png.png" alt="UFAL Logo">
         </div>
         <div id="menu_principal">
-            <p><a class="links" href="inicio.html">Início</a></p>
-            <p><a class="links" href="add_processos.html">Adicionar Processo</a></p>
-            <p><a class="links" href="relatorios.html">Relatórios</a></p>
-            <p><button id="sair" type="button"> SAIR</button></p>
+            <ul id="menu_principal_lista">
+                <li>
+                    <a class="links" href="#">
+                        <img src="../assets/img/botao-de-inicio.png" alt="Inicio">
+                        <p class="texto blue">Inicio</p>
+                    </a>
+                </li>
+                <li>
+                    <a class="links" href="add_processos.html">
+                        <img src="../assets/img/adicionar-ficheiro.png" alt="Adicionar Processo">
+                        <p class="texto">Adicionar Processo</p>
+                    </a>
+                </li>
+                <li>
+                    <a class="links" href="relatorios.html">
+                        <img src="../assets/img/lista-de-afazeres.png" alt="Relatorios">
+                        <p class="texto">Relatórios</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="sair">
+            <img src="../assets/img/sair.png" alt="sair">
         </div>
     </header>
-    
 
     <section id="m_busca">
         <div id="m_busca_titulo">
@@ -29,8 +47,8 @@
         <div id="f_busca">
             <form id="formulario" action="">
                 <input type="text" name="busca" id="busca" placeholder="Buscar" onclick=select()><br>
-                <button type="submit">
-                    <img src="../assets/img/59cfc4d2d3b1936210a5ddc7.png" alt="Icone Lupa">
+                <button id="button-image" type="submit">
+                    <img src="../assets/img/lupa.png" alt="Icone Lupa">
                 </button>
             </form>
             <div id="f_busca_filtros">

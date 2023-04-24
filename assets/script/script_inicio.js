@@ -217,7 +217,7 @@ function confirmarExclusao(item) {
         overlayBg = document.querySelector(".overlay-bg")
         if (overlayBg) {
             document.body.removeChild(overlayBg)
-            console.log("removido")
+            console.log("Exclusão Cancelada!")
         }
     });
 }
