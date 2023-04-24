@@ -175,7 +175,7 @@ header {
 
 .editar_processo {
     position: fixed;
-    top: 154px;
+    top: 190px;
     right: 20px;
     border: 1px solid black;
     border-radius: 7px;
@@ -230,14 +230,14 @@ header {
 }
 
 @media screen and (max-width: 780px) {
-    .editar_processo{
-        top: 200px;
+    .editar_processo {
+        position: fixed;
+        top: 340px;
+        right: 20px;
+        border: 1px solid black;
+        border-radius: 7px;
     }
-    .editar_processo img {
-        width: 23px;
-        padding: 3px;
-    }
-    }
+}
 
 
 /* RODAPÉ DO SITE */
