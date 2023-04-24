@@ -60,6 +60,10 @@ header {
   align-items: flex-end;
 }
 
+#sair:hover {
+  cursor: pointer;
+}
+
 #sair img {
   width: 40px;
   margin: auto 10px;
