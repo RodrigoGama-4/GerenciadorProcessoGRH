@@ -45,6 +45,15 @@ header {
     color: rgb(255, 255, 255);
 }
 
+#menu_principal_lista a:hover {
+    color: #173e82;
+    transition: 0.2s;
+}
+
+.blue {
+    color: #173e82;
+}
+
 .texto {
     text-align: center;
 }
