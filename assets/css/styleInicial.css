@@ -65,7 +65,7 @@ header {
     vertical-align: middle;
 }
 
-#sair {
+#divsair {
     display: flex;
     align-items: flex-end;
 }
@@ -74,7 +74,7 @@ header {
     cursor: pointer;
 }
 
-#sair img {
+#divsair img {
     width: 40px;
     margin: auto 10px;
 }
@@ -273,6 +273,7 @@ header {
     display: flex;
     cursor: pointer;
     padding: 20px;
+    margin-bottom: 5px;
 }
 
 .resultado_indi_informacoes {
@@ -386,6 +387,25 @@ header {
 
     .botoes-container {
         padding-top: 50%;
+    }
+
+    .resultado_indi {
+        margin-bottom: 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .resultado_indi_informacoes{
+        margin-left: 5px;
+    }
+
+    .resultado_indi_icone {
+        text-align: center;
+        width: 20%;
+    }
+    
+    .resultado_indi_icone img {
+        height: 30px;
     }
 }
 
