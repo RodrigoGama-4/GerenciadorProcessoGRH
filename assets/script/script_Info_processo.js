@@ -193,12 +193,13 @@ function editarProcesso(){
 
 // Verifica as entradas do usuário
 function verificacao(numProc, inte, dat, desti, assun) {
+
     //Verica o numero do processo
     const regexNumeroProcesso = /^23065\.\d{6}\/\d{4}-\d{2}$/;
     //Verifica inputs vazios e tags html
     const regexGeral = /^(?!\s*$)(?!.*(<|>))(?!.*\b(on\w+))/;
 
-    if (regexGeral.test(numProc) && regexNumeroProcesso.test(numProc) && regexGeral.test(inte) && regexGeral.test(dat) && regexGeral.test(desti) && regexGeral.test(assun))  {
+    if (regexNumeroProcesso.test(numProc.trim()) && regexGeral.test(inte) && regexGeral.test(dat) && regexGeral.test(desti) && regexGeral.test(assun))  {
         return true
     } else {
         return false

@@ -52,7 +52,7 @@ async function main() {
             construirAll();
             texto_fim.style.visibility = 'visible'
             if (lista_processos[0].length >= 3){
-                window.scroll(0, 250)
+                window.scroll(0, 350)
             }
         } else {
             // lista recebe os dados da função de pesquisa 
@@ -63,7 +63,7 @@ async function main() {
             construir();
             texto_fim.style.visibility = 'visible'
             if (lista_processos.length > 4){
-                window.scroll(0, 250)
+                window.scroll(0, 350)
             }
         }
     } else {
