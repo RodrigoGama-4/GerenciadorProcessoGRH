@@ -74,7 +74,7 @@ function construir() {
                             <p class="info_estilo">Data de Entrada:<spam id = 'textData' class="bold"> ${dataRefatorada}</spam></p>
                             <p class="info_estilo">Destino:<spam id = 'textDestino' class="bold"> ${processo.destino}</spam></p>
                             <p class="info_estilo justificado"><spam class="semi-bold">Assunto:<br/><br/></spam><spam id='textAssunto'>${processo.assunto}</spam></p>
-                            <p class="info_estilo justificado"><spam class="semi-bold">Observações:<br/><br/></spam><spam id='textObs'>${processo.obs}</spam></p>
+                            <p class="info_estilo justificado"><spam class="semi-bold">Observações:<br/><br/></spam><spam id='textObs'>${processo.obs.replace("<", "<-").replace(">", "->")}</spam></p>
                             <div id="botoes">
                                 <button class="editar_concluido" style="display: none;">ENVIAR EDIÇÕES</button>
                                 <button class="cancelar_concluido" style="display: none;">CANCELAR</button>
