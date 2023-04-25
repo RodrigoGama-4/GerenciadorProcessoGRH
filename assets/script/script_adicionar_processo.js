@@ -40,9 +40,9 @@ form.addEventListener('submit', function(e){
     let o = obs.value
 
     // Chama a função de verificação
-    if (verificacao(n, i, d, de, a, o)) {
+    if (verificacao(n, i, d, de, a)) {
         // Chama a função enviar
-        enviar()
+        enviar(n, i, d, de, a, o)
 
         // Confirmação de envio
         alert('Enviado')
@@ -63,20 +63,21 @@ function verificacao(numProc, inte, dat, desti, assun) {
     
 
     if (regexGeral.test(numProc) && regexNumeroProcesso.test(numProc) && regexGeral.test(inte) && regexGeral.test(dat) && regexGeral.test(desti) && regexGeral.test(assun))  {
+        console.log("|True")
         return true
+        
     } else {
+        console.log("|False")
         return false
     }
 }
 
 
 // Função chama a função enviar do firebase
-async function enviar() {
+async function enviar(n, i, d, de, a, o) {
     //Verifica o OBS tags html/js
-    const regexTag = /^[^<>]+$/; 
-    if (regexTag.test(obs.value)){
-        await sendData(numero.value, interessado.value, data.value, desti.value, assunto.value, obs.value)
-    }   
+    console.log('Chegou no enviar')
+    await sendData(n, i, d, de, a, o)  
 }
 
 // Função para limpar os campos quando o processo for enviado com sucesso
