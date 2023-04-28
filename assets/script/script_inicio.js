@@ -18,6 +18,33 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
+//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
+//FILTRO NUMERO PROCESSO
+var filtro_processo = document.getElementById('filtro_numero_processo')
+var estadoFiltroProcesso = false;
+
+filtro_processo.addEventListener('click', (e) =>{
+    estadoFiltroProcesso = true;
+})
+
+//FILTRO INTERESSADO
+var filtro_interessado = document.getElementById('filtro_interessado')
+var estadoInteressado = false;
+
+filtro_interessado.addEventListener('click', (e)=>{
+    estadoInteressado = true;
+})
+
+//FILTRO DESTINO
+var filtro_destino = document.getElementById('filtro_destino')
+var estadoDestino = false;
+
+filtro_destino.addEventListener('click', (e)=>{
+    estadoDestino = true;
+})
+
+
+
 ver()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
@@ -55,13 +82,45 @@ async function main() {
                 window.scroll(0, 350)
             }
         } else {
+            if (estadoFiltroProcesso){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoNumeroProcesso(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoFiltroProcesso = false;
+            }
+            if (estadoInteressado){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoInteressado(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoInteressado = false;
+            }
+
+            if(estadoDestino){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoDestino(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoDestino = false;
+            }
+            /*
             // lista recebe os dados da função de pesquisa 
             lista_processos = await getProcessoInteressado(t_busca.value)
             // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
             res.style.border = '2px solid black'
             res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
             construir();
-            texto_fim.style.visibility = 'visible'
+            texto_fim.style.visibility = 'visible'*/
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
