@@ -183,6 +183,25 @@ header {
     margin-right: 10px;
 }
 
+#opcoes_filtros{
+    margin-top: 1rem;
+}
+
+#filtro_numero_processo{
+    height: 2rem;
+    width: 10rem;
+}
+
+#filtro_destino{
+    height: 2rem;
+    width: 10rem;
+}
+
+#filtro_interessado{
+    height: 2rem;
+    width: 10rem;
+}
+
 /* Responsividade */
 
 @media (max-width: 780px) {

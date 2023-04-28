@@ -56,7 +56,7 @@ async function main() {
             }
         } else {
             // lista recebe os dados da função de pesquisa 
-            lista_processos = await getProcesso(t_busca.value)
+            lista_processos = await getProcessoInteressado(t_busca.value)
             // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
             res.style.border = '2px solid black'
             res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
