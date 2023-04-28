@@ -1,4 +1,4 @@
-import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
+import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
 var status = localStorage.getItem('status')
 
