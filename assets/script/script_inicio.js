@@ -1,5 +1,9 @@
 import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
+document.addEventListener("DOMContentLoaded", function(){
+    ver()
+})
+
 var status = localStorage.getItem('status')
 
 function ver(){
@@ -18,34 +22,7 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
-//FILTRO NUMERO PROCESSO
-var filtro_processo = document.getElementById('filtro_numero_processo')
-var estadoFiltroProcesso = false;
 
-filtro_processo.addEventListener('click', (e) =>{
-    estadoFiltroProcesso = true;
-})
-
-//FILTRO INTERESSADO
-var filtro_interessado = document.getElementById('filtro_interessado')
-var estadoInteressado = false;
-
-filtro_interessado.addEventListener('click', (e)=>{
-    estadoInteressado = true;
-})
-
-//FILTRO DESTINO
-var filtro_destino = document.getElementById('filtro_destino')
-var estadoDestino = false;
-
-filtro_destino.addEventListener('click', (e)=>{
-    estadoDestino = true;
-})
-
-
-
-ver()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -127,9 +104,13 @@ async function main() {
         }
     } else {
         console.log('Nenhum dado Salvo')
-        res.innerHTML = ""
-        res.style.border = 'none'
         texto_fim.style.visibility = 'hidden'
+        try {
+            res.innerHTML = ""
+            res.style.border = 'none'
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
