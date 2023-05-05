@@ -1,4 +1,4 @@
-import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
+import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
 document.addEventListener("DOMContentLoaded", function(){
     ver()
@@ -59,13 +59,45 @@ async function main() {
                 window.scroll(0, 350)
             }
         } else {
+            if (estadoFiltroProcesso){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoNumeroProcesso(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoFiltroProcesso = false;
+            }
+            if (estadoInteressado){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoInteressado(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoInteressado = false;
+            }
+
+            if(estadoDestino){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoDestino(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+                estadoDestino = false;
+            }
+            /*
             // lista recebe os dados da função de pesquisa 
-            lista_processos = await getProcesso(t_busca.value)
+            lista_processos = await getProcessoInteressado(t_busca.value)
             // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
             res.style.border = '2px solid black'
             res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
             construir();
-            texto_fim.style.visibility = 'visible'
+            texto_fim.style.visibility = 'visible'*/
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
