@@ -1,5 +1,9 @@
 import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
+document.addEventListener("DOMContentLoaded", function(){
+    ver()
+})
+
 var status = localStorage.getItem('status')
 
 function ver(){
@@ -18,80 +22,7 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-var estadoFiltroProcesso = false;
-var estadoInteressado = false;
-var estadoDestino = false;
 
-//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
-function filtros(){
-    //FILTRO NUMERO PROCESSO
-    var filtro_processo = document.getElementById('filtro_numero_processo');
-
-    filtro_processo.addEventListener('click', (e) => {
-        if (estadoFiltroProcesso) {
-            estadoFiltroProcesso = false;
-            filtro_processo.classList.remove('active');
-        } else {
-            estadoFiltroProcesso = true;
-            filtro_processo.classList.add('active');
-
-            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
-            estadoDestino = false;
-            estadoInteressado = false;
-
-            // Remover a classe 'active' dos outros filtros, se estiverem presentes
-            filtro_interessado.classList.remove('active');
-            filtro_destino.classList.remove('active');
-        }
-    });
-
-    //FILTRO INTERESSADO
-    var filtro_interessado = document.getElementById('filtro_interessado');
-
-    filtro_interessado.addEventListener('click', (e) => {
-        if (estadoInteressado) {
-            estadoInteressado = false;
-            filtro_interessado.classList.remove('active');
-        } else {
-            estadoInteressado = true;
-            filtro_interessado.classList.add('active');
-
-            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
-            estadoDestino = false;
-            estadoFiltroProcesso = false;
-
-            // Remover a classe 'active' dos outros filtros, se estiverem presentes
-            filtro_processo.classList.remove('active');
-            filtro_destino.classList.remove('active');
-        }
-    });
-
-    //FILTRO DESTINO
-    var filtro_destino = document.getElementById('filtro_destino');
-
-    filtro_destino.addEventListener('click', (e) => {
-        if (estadoDestino) {
-            estadoDestino = false;
-            filtro_destino.classList.remove('active');
-        } else {
-            estadoDestino = true;
-            filtro_destino.classList.add('active');
-
-            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
-            estadoInteressado = false;
-            estadoFiltroProcesso = false;
-
-            // Remover a classe 'active' dos outros filtros, se estiverem presentes
-            filtro_processo.classList.remove('active');
-            filtro_interessado.classList.remove('active');
-        }
-    });
-}
-
-
-
-
-ver()
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -162,9 +93,13 @@ async function main() {
         }
     } else {
         console.log('Nenhum dado Salvo')
-        res.innerHTML = ""
-        res.style.border = 'none'
         texto_fim.style.visibility = 'hidden'
+        try {
+            res.innerHTML = ""
+            res.style.border = 'none'
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
