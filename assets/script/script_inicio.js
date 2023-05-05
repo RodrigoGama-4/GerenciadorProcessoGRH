@@ -42,8 +42,8 @@ form.addEventListener('submit', function(e) {
 
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
-
     if (getDadosSessao('busca')){
+        filtros()
         t_busca.value = getDadosSessao('busca')
 
         if (t_busca.value == '*'){
@@ -67,7 +67,6 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoFiltroProcesso = false;
             }
             if (estadoInteressado){
                 // lista recebe os dados da função de pesquisa 
@@ -77,7 +76,6 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoInteressado = false;
             }
 
             if(estadoDestino){
@@ -88,16 +86,7 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoDestino = false;
             }
-            /*
-            // lista recebe os dados da função de pesquisa 
-            lista_processos = await getProcessoInteressado(t_busca.value)
-            // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
-            res.style.border = '2px solid black'
-            res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
-            construir();
-            texto_fim.style.visibility = 'visible'*/
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
