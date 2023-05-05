@@ -184,9 +184,15 @@ header {
 }
 
 #opcoes_filtros{
-    margin-top: 1rem;
+    margin-top: 1rem;    
 }
 
+/* ativar cor ao redor do botao */
+button.active {
+    border: 2px solid blue;
+}
+
+/* estilo botoes do filtro*/
 #filtro_numero_processo{
     height: 2rem;
     width: 10rem;

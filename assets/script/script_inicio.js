@@ -18,30 +18,76 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
-//FILTRO NUMERO PROCESSO
-var filtro_processo = document.getElementById('filtro_numero_processo')
 var estadoFiltroProcesso = false;
-
-filtro_processo.addEventListener('click', (e) =>{
-    estadoFiltroProcesso = true;
-})
-
-//FILTRO INTERESSADO
-var filtro_interessado = document.getElementById('filtro_interessado')
 var estadoInteressado = false;
-
-filtro_interessado.addEventListener('click', (e)=>{
-    estadoInteressado = true;
-})
-
-//FILTRO DESTINO
-var filtro_destino = document.getElementById('filtro_destino')
 var estadoDestino = false;
 
-filtro_destino.addEventListener('click', (e)=>{
-    estadoDestino = true;
-})
+//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
+function filtros(){
+    //FILTRO NUMERO PROCESSO
+    var filtro_processo = document.getElementById('filtro_numero_processo');
+
+    filtro_processo.addEventListener('click', (e) => {
+        if (estadoFiltroProcesso) {
+            estadoFiltroProcesso = false;
+            filtro_processo.classList.remove('active');
+        } else {
+            estadoFiltroProcesso = true;
+            filtro_processo.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoDestino = false;
+            estadoInteressado = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_interessado.classList.remove('active');
+            filtro_destino.classList.remove('active');
+        }
+    });
+
+    //FILTRO INTERESSADO
+    var filtro_interessado = document.getElementById('filtro_interessado');
+
+    filtro_interessado.addEventListener('click', (e) => {
+        if (estadoInteressado) {
+            estadoInteressado = false;
+            filtro_interessado.classList.remove('active');
+        } else {
+            estadoInteressado = true;
+            filtro_interessado.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoDestino = false;
+            estadoFiltroProcesso = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_processo.classList.remove('active');
+            filtro_destino.classList.remove('active');
+        }
+    });
+
+    //FILTRO DESTINO
+    var filtro_destino = document.getElementById('filtro_destino');
+
+    filtro_destino.addEventListener('click', (e) => {
+        if (estadoDestino) {
+            estadoDestino = false;
+            filtro_destino.classList.remove('active');
+        } else {
+            estadoDestino = true;
+            filtro_destino.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoInteressado = false;
+            estadoFiltroProcesso = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_processo.classList.remove('active');
+            filtro_interessado.classList.remove('active');
+        }
+    });
+}
+
 
 
 
@@ -65,8 +111,8 @@ form.addEventListener('submit', function(e) {
 
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
-
     if (getDadosSessao('busca')){
+        filtros()
         t_busca.value = getDadosSessao('busca')
 
         if (t_busca.value == '*'){
@@ -90,7 +136,6 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoFiltroProcesso = false;
             }
             if (estadoInteressado){
                 // lista recebe os dados da função de pesquisa 
@@ -100,7 +145,6 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoInteressado = false;
             }
 
             if(estadoDestino){
@@ -111,16 +155,7 @@ async function main() {
                 res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
                 construir();
                 texto_fim.style.visibility = 'visible'
-                estadoDestino = false;
             }
-            /*
-            // lista recebe os dados da função de pesquisa 
-            lista_processos = await getProcessoInteressado(t_busca.value)
-            // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
-            res.style.border = '2px solid black'
-            res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
-            construir();
-            texto_fim.style.visibility = 'visible'*/
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
