@@ -22,10 +22,11 @@ async function getProcesso(data) {
   const c = query(collection(db, "processo"), where('data', '==', data)); 
   const cSnapshot = await getDocs(c);
 
+
   cSnapshot.forEach((doc) => {
       lista_processos.unshift(doc.id, doc.data());
   }); 
-}
+
 
 //PROCURANDO PROCESSOS POR NOME DO INTERESSADO
 async function getProcessoInteressado(interessado){
@@ -75,6 +76,7 @@ processos.forEach((processo) => {
   }
 });
 return lista_processos;
+
 }
 
 

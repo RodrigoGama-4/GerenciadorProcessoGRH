@@ -111,8 +111,11 @@ form.addEventListener('submit', function(e) {
 
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
+
     filtros()
+
     if (getDadosSessao('busca')){
+        filtros()
         t_busca.value = getDadosSessao('busca')
 
         if (t_busca.value == '*'){
