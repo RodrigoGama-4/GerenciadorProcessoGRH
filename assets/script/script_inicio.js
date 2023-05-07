@@ -1,4 +1,4 @@
-import { getProcesso, getProcessos, excluir } from "./firebase/funcFirebase.js"
+import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
 document.addEventListener("DOMContentLoaded", function(){
     ver()
@@ -22,7 +22,75 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
+var estadoFiltroProcesso = false;
+var estadoInteressado = false;
+var estadoDestino = false;
 
+//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
+function filtros(){
+    //FILTRO NUMERO PROCESSO
+    var filtro_processo = document.getElementById('filtro_numero_processo');
+
+    filtro_processo.addEventListener('click', (e) => {
+        if (estadoFiltroProcesso) {
+            estadoFiltroProcesso = false;
+            filtro_processo.classList.remove('active');
+        } else {
+            estadoFiltroProcesso = true;
+            filtro_processo.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoDestino = false;
+            estadoInteressado = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_interessado.classList.remove('active');
+            filtro_destino.classList.remove('active');
+        }
+    });
+
+    //FILTRO INTERESSADO
+    var filtro_interessado = document.getElementById('filtro_interessado');
+
+    filtro_interessado.addEventListener('click', (e) => {
+        if (estadoInteressado) {
+            estadoInteressado = false;
+            filtro_interessado.classList.remove('active');
+        } else {
+            estadoInteressado = true;
+            filtro_interessado.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoDestino = false;
+            estadoFiltroProcesso = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_processo.classList.remove('active');
+            filtro_destino.classList.remove('active');
+        }
+    });
+
+    //FILTRO DESTINO
+    var filtro_destino = document.getElementById('filtro_destino');
+
+    filtro_destino.addEventListener('click', (e) => {
+        if (estadoDestino) {
+            estadoDestino = false;
+            filtro_destino.classList.remove('active');
+        } else {
+            estadoDestino = true;
+            filtro_destino.classList.add('active');
+
+            //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+            estadoInteressado = false;
+            estadoFiltroProcesso = false;
+
+            // Remover a classe 'active' dos outros filtros, se estiverem presentes
+            filtro_processo.classList.remove('active');
+            filtro_interessado.classList.remove('active');
+        }
+    });
+}
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -37,12 +105,13 @@ form.addEventListener('submit', function(e) {
 
     // Chama a função principal
     main();
+    filtros()
 })
 
 
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
-
+    filtros()
     if (getDadosSessao('busca')){
         t_busca.value = getDadosSessao('busca')
 
@@ -59,13 +128,34 @@ async function main() {
                 window.scroll(0, 350)
             }
         } else {
-            // lista recebe os dados da função de pesquisa 
-            lista_processos = await getProcesso(t_busca.value)
-            // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
-            res.style.border = '2px solid black'
-            res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
-            construir();
-            texto_fim.style.visibility = 'visible'
+            if (estadoFiltroProcesso){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoNumeroProcesso(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+            }
+            if (estadoInteressado){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoInteressado(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+            }
+
+            if(estadoDestino){
+                // lista recebe os dados da função de pesquisa 
+                lista_processos = await getProcessoDestino(t_busca.value)
+                // Adiciona borda ao elemento resultado, exibi a quantidade de processos encontrados e exibe o copyright depois de chamar a função para construir os dados
+                res.style.border = '2px solid black'
+                res.innerHTML = `<div class="resultado_quant"><p>Foram encontrados: ${lista_processos.length/2} processos.</p></div>`
+                construir();
+                texto_fim.style.visibility = 'visible'
+            }
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
