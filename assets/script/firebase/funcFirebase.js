@@ -16,32 +16,65 @@ async function sendData(num_processo, interessado, data, destino, assunto, obs) 
 
 // Pesquisa por processos atraves do dado passado na entrada - retorna uma lista
 async function getProcesso(data) {
-    let lista_processos = []
+  let lista_processos = []
 
-    // Procura pela data de maneira especifica
-    const c = query(collection(db, "processo"), where('data', '==', data)); 
-    const cSnapshot = await getDocs(c);
+  // Procura pela data de maneira especifica
+  const c = query(collection(db, "processo"), where('data', '==', data)); 
+  const cSnapshot = await getDocs(c);
 
-    cSnapshot.forEach((doc) => {
-        lista_processos.unshift(doc.id, doc.data());
-    }); 
-  
-    // Procura por substrings
-    const snapshot = await getDocs(collection(db, "processo"));
-    const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  cSnapshot.forEach((doc) => {
+      lista_processos.unshift(doc.id, doc.data());
+  }); 
+}
 
-    processos.forEach((processo) => {
-      const interessadoMinusculo = processo.interessado.toLowerCase();
-      const numProcMinusculo = processo.numeroProcesso.toLowerCase();
-      const destinoMinusculo = processo.destino.toLowerCase();
-      const subStringMinusculo = data.toLowerCase();
-      if (interessadoMinusculo.includes(subStringMinusculo) || numProcMinusculo.includes(subStringMinusculo) || destinoMinusculo.includes(subStringMinusculo)) {
-        lista_processos.unshift(processo);
-        lista_processos.unshift(processo.id);
-      }
-    });
+//PROCURANDO PROCESSOS POR NOME DO INTERESSADO
+async function getProcessoInteressado(interessado){
+let lista_processos = []
+const snapshot = await getDocs(collection(db, "processo"));
+const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+processos.forEach((processo) => {
+  const interessadoMinusculo = processo.interessado.toLowerCase();
+  const subStringMinusculo = interessado.toLowerCase();
+  if (interessadoMinusculo.includes(subStringMinusculo)) {
+    lista_processos.unshift(processo);
+    lista_processos.unshift(processo.id);
+  }
+});
+return lista_processos;
+}
 
-    return lista_processos;
+//PROCURANDO PROCESSOS POR NUMERO DO PROCESSO
+async function getProcessoNumeroProcesso(numProcesso){
+let lista_processos = []
+const snapshot = await getDocs(collection(db, "processo"));
+const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+processos.forEach((processo) => {
+  const numProcMinusculo = processo.numeroProcesso.toLowerCase();
+  const subStringMinusculo = numProcesso.toLowerCase();
+  if (numProcMinusculo.includes(subStringMinusculo)) {
+    lista_processos.unshift(processo);
+    lista_processos.unshift(processo.id);
+  }
+});
+
+return lista_processos;
+}
+
+
+//PROCURANDO PROCESSO POR DESTINO
+async function getProcessoDestino(destino){
+let lista_processos = []
+const snapshot = await getDocs(collection(db, "processo"));
+const processos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+processos.forEach((processo) => {
+  const destinoMinusculo = processo.destino.toLowerCase();
+  const subStringMinusculo = destino.toLowerCase();
+  if (destinoMinusculo.includes(subStringMinusculo)) {
+    lista_processos.unshift(processo);
+    lista_processos.unshift(processo.id);
+  }
+});
+return lista_processos;
 }
 
 
@@ -108,4 +141,4 @@ function atualizarDocumento(id, interessado, numeroProcesso, destino, data, assu
     });
 }
 
-export {sendData, getProcesso, getProcessos, getProcessoID,excluir, atualizarDocumento};
+export {sendData, getProcesso, getProcessos, getProcessoID,excluir, atualizarDocumento, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso};
