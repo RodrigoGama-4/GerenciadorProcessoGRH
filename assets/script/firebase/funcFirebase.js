@@ -26,7 +26,7 @@ async function getProcesso(data) {
   cSnapshot.forEach((doc) => {
       lista_processos.unshift(doc.id, doc.data());
   }); 
-
+}
 
 //PROCURANDO PROCESSOS POR NOME DO INTERESSADO
 async function getProcessoInteressado(interessado){
@@ -143,4 +143,6 @@ function atualizarDocumento(id, interessado, numeroProcesso, destino, data, assu
     });
 }
 
-export {sendData, getProcesso, getProcessos, getProcessoID,excluir, atualizarDocumento, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso};
+export {sendData, getProcesso, getProcessos, getProcessoID, excluir, 
+  atualizarDocumento, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso
+}

@@ -105,7 +105,7 @@ form.addEventListener('submit', function(e) {
 
     // Chama a função principal
     main();
-    filtros()
+    //filtros()
 })
 
 
