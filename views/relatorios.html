@@ -40,16 +40,32 @@
         </div>
     </header>
     
-    <section class="secao_principal">
-        <div>
-            <h1 id="nome_secao_principal" >Em construção...</h1>
+    <section id="secao_principal">
+        <div id="titulo">
+            <h1>Gerenciador de Processos - GRH</h1>
         </div>
+        <div id="formulario">
+            <form id="form_data" action="">
+                
+                <label for="data">Data Inicial:</label>
+                <input type="date" id="data_inicial" class="input" name="data_inicial">
+
+                <label for="data">Data Final:</label>
+                <input type="date" id="data_final" class="input" name="data_final">
+                
+                <button id="enviar" type="submit">Gerar Relatório</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="resultado">
+          
     </section>
 
     <footer>
         <p>&copy;Gerencia de Recursos Humanos</p>
     </footer>
-    <script src="../assets/script/script_relatorios.js"></script>
+    <script type="module" src="../assets/script/script_relatorios.js"></script>
     <script type="module" src="../assets/script/firebase/sair.js"></script>
 </body>
 </html>
