@@ -18,10 +18,15 @@ function ver(){
 
 
 async function main() {
-    lista_processos = await getProcessos()
-    console.log(lista_processos[0])
+    //dadosBanco()
+    //console.log(lista_processos[0])
 
-    verPeriodo()
+    //verPeriodo()
+}
+
+
+async function dadosBanco() {
+    lista_processos = await getProcessos()
 }
 
 
