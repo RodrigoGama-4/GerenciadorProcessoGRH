@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 var status = localStorage.getItem('status')
+var res = document.getElementById('resultado')
+var form = document.getElementById('form_data')
 var lista_processos = []
 
-var form = document.getElementById('form_data')
 
 function ver(){
     if (status == "true") {
@@ -58,5 +59,20 @@ function verPeriodo() {
     }
 
     console.log(lista_relatorio.length)
-    
+    construir(periodoInicial.value, periodoFinal.value, lista_relatorio)
+}
+
+
+function construir(inicio, final, proc) {
+
+    var n_proc = proc.length
+
+    res.innerHTML = `
+                    <div class='resultado_indi'>
+                        <div class='resultado_quant'>
+                            <p>No Periodo de ${inicio} a ${final} foram encontrados ${n_proc} processo(s)</p>
+                        </div>
+                    </div>
+                    
+                    `
 }

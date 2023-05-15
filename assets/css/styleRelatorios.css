@@ -142,6 +142,7 @@ label {
 .input {
     padding: 10px;
     margin: 5px 0 10px 0;
+    cursor: pointer;
 }
 
 #titulo {
@@ -159,6 +160,27 @@ label {
   
 #enviar:hover {
     background-color: #0845af;
+    cursor: pointer;
+}
+
+.resultado_indi {
+    width: 98%;
+    border: 2px solid rgb(66, 66, 66);
+    border-radius: 10px;
+    text-align: left;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px auto;
+    display: flex;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+
+.resultado_quant {
+    text-align: left;
+    margin: 15px 25px;
+    width: 98%;
 }
 
 /* RODAPÉ DO SITE */
