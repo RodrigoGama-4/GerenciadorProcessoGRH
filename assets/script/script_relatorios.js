@@ -37,6 +37,7 @@ async function main() {
 
 
 async function dadosBanco() {
+
     lista_processos = await getProcessos()
 }
 
@@ -66,13 +67,30 @@ function verPeriodo() {
 function construir(inicio, final, proc) {
 
     var n_proc = proc.length
+    res.style.border = '2px solid black'
+    res.innerHTML = `<div class='resultado_quant'>
+                        <p>No Periodo de ${inicio} a ${final} foram encontrados ${n_proc} processo(s)</p>
+                    </div>`
 
-    res.innerHTML = `
-                    <div class='resultado_indi'>
-                        <div class='resultado_quant'>
-                            <p>No Periodo de ${inicio} a ${final} foram encontrados ${n_proc} processo(s)</p>
-                        </div>
-                    </div>
-                    
-                    `
+    if (n_proc == 1) {
+        res.innerHTML += `
+                            <div class='resultado_indi'>
+                                <div class="resultado_indi_informacoes">
+                                    <p>Número do Processo: ${proc[0].numeroProcesso}</p>
+                                    <p>Nome do Interessado: ${proc[0].interessado}</p>
+                                </div>
+                            </div>
+                            `
+    } else if (n_proc > 1) {
+        for (var i = 0; i < n_proc; i++) {
+            res.innerHTML += `
+                            <div class='resultado_indi'>
+                                <div class="resultado_indi_informacoes">
+                                    <p>Número do Processo: ${proc[i].numeroProcesso}</p>
+                                    <p>Nome do Interessado: ${proc[i].interessado}</p>
+                                </div>
+                            </div>
+                            `
+        }
+    }
 }
