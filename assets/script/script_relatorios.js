@@ -78,6 +78,7 @@ function construir(inicio, final, proc) {
                                 <div class="resultado_indi_informacoes">
                                     <p>Número do Processo: ${proc[0].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[0].interessado}</p>
+                                    <p>Destino: ${proc[0].destino}</p>
                                 </div>
                             </div>
                             `
@@ -88,6 +89,7 @@ function construir(inicio, final, proc) {
                                 <div class="resultado_indi_informacoes">
                                     <p>Número do Processo: ${proc[i].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[i].interessado}</p>
+                                    <p>Destino: ${proc[i].destino}</p>
                                 </div>
                             </div>
                             `
