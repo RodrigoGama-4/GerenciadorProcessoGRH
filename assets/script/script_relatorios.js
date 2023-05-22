@@ -96,3 +96,22 @@ function construir(inicio, final, proc) {
         }
     }
 }
+
+var botao = document.getElementById('botao')
+
+botao.addEventListener('click', function(e){
+    gerarPDF()
+})
+
+
+function gerarPDF() {
+    var ht = window.document.body
+    console.log(ht)
+    var doc = new jsPDF() 
+
+    doc.html(ht, {
+        callback: function (doc) {
+            doc.save()
+        }
+    })
+}
