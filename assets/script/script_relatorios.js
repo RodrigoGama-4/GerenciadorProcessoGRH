@@ -105,13 +105,10 @@ botao.addEventListener('click', function(e){
 
 
 function gerarPDF() {
-    var ht = window.document.body
-    console.log(ht)
+    const ht = res.innerHTML
+    console.log('ht', ht)
     var doc = new jsPDF() 
 
-    doc.html(ht, {
-        callback: function (doc) {
-            doc.save()
-        }
-    })
+    doc.fromHTML(ht)
+    doc.save('teste.pdf')
 }
