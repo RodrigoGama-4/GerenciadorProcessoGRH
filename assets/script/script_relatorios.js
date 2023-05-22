@@ -78,6 +78,7 @@ function construir(inicio, final, proc) {
                                 <div class="resultado_indi_informacoes">
                                     <p>Número do Processo: ${proc[0].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[0].interessado}</p>
+                                    <p>Destino: ${proc[0].destino}</p>
                                 </div>
                             </div>
                             `
@@ -88,9 +89,35 @@ function construir(inicio, final, proc) {
                                 <div class="resultado_indi_informacoes">
                                     <p>Número do Processo: ${proc[i].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[i].interessado}</p>
+                                    <p>Destino: ${proc[i].destino}</p>
                                 </div>
                             </div>
                             `
         }
     }
+}
+
+// pegando o botao que pede a geracao do relatorio pdf
+var botao = document.getElementById('botao')
+
+// adicionando evento de click a esse botao
+botao.addEventListener('click', function(e){
+    gerarPDF()
+})
+
+// funcao para gerar pdf
+function gerarPDF() {
+
+    //pega o html do item resultado
+    const ht = res.innerHTML
+    console.log('ht', ht)
+
+    //cria um objeto jspdf
+    var doc = new jsPDF() 
+
+    //adiciona o html ao objeto
+    doc.fromHTML(ht)
+
+    //salva o documento em pdf
+    doc.save('teste.pdf')
 }
