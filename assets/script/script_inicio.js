@@ -115,7 +115,6 @@ async function main() {
     filtros()
 
     if (getDadosSessao('busca')){
-        filtros()
         t_busca.value = getDadosSessao('busca')
 
         if (t_busca.value == '*'){
