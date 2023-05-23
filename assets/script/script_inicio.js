@@ -30,8 +30,9 @@ var estadoDestino = false;
 function filtros(){
     //FILTRO NUMERO PROCESSO
     var filtro_processo = document.getElementById('filtro_numero_processo');
-
     filtro_processo.addEventListener('click', (e) => {
+        estadoFiltroProcesso = false
+        console.log('filtro processo')
         if (estadoFiltroProcesso) {
             estadoFiltroProcesso = false;
             filtro_processo.classList.remove('active');
@@ -47,12 +48,14 @@ function filtros(){
             filtro_interessado.classList.remove('active');
             filtro_destino.classList.remove('active');
         }
+        console.log(estadoFiltroProcesso)
     });
 
     //FILTRO INTERESSADO
     var filtro_interessado = document.getElementById('filtro_interessado');
 
     filtro_interessado.addEventListener('click', (e) => {
+        estadoInteressado = false;
         if (estadoInteressado) {
             estadoInteressado = false;
             filtro_interessado.classList.remove('active');
@@ -68,12 +71,14 @@ function filtros(){
             filtro_processo.classList.remove('active');
             filtro_destino.classList.remove('active');
         }
+        console.log(estadoInteressado)
     });
 
     //FILTRO DESTINO
     var filtro_destino = document.getElementById('filtro_destino');
 
     filtro_destino.addEventListener('click', (e) => {
+        estadoDestino = false;
         if (estadoDestino) {
             estadoDestino = false;
             filtro_destino.classList.remove('active');
@@ -89,6 +94,7 @@ function filtros(){
             filtro_processo.classList.remove('active');
             filtro_interessado.classList.remove('active');
         }
+        console.log(estadoDestino)
     });
 }
 
