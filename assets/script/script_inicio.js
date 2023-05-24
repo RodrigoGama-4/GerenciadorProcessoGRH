@@ -100,11 +100,6 @@ filtro_destino.addEventListener('click', (e) => {
     main()
 });
 
-function resetFiltros() {
-    estadoFiltroProcesso = false;
-    estadoInteressado = false;
-    estadoDestino = false;
-}
 
 // Fica sempre esperando que o evento de enviar (submit) occora para chamar as funções
 form.addEventListener('submit', function(e) { 
@@ -116,9 +111,6 @@ form.addEventListener('submit', function(e) {
 
     // Adiciona o termo buscado ao sessionStorage
     addDadosSessao('busca', t_busca.value)
-
-    // Reseta os filtros
-    resetFiltros()
 
     // Chama a função principal
     main();
