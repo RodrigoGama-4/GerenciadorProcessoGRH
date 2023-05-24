@@ -37,7 +37,6 @@ async function main() {
 
 
 async function dadosBanco() {
-
     lista_processos = await getProcessos()
 }
 
@@ -95,6 +94,9 @@ function construir(inicio, final, proc) {
                             `
         }
     }
+
+    botao.classList.remove('notVisivel')
+    botao.classList.add('visivel')
 }
 
 // pegando o botao que pede a geracao do relatorio pdf
@@ -108,6 +110,7 @@ botao.addEventListener('click', function(e){
 // funcao para gerar pdf
 function gerarPDF() {
 
+    /*
     //pega o html do item resultado
     const ht = res.innerHTML
     console.log('ht', ht)
@@ -120,4 +123,40 @@ function gerarPDF() {
 
     //salva o documento em pdf
     doc.save('teste.pdf')
+    
+    html2canvas(document.getElementById("resultado"), {
+        onrendered: function(canvas) {
+                            
+            var imgData = canvas.toDataURL('image/jpeg');
+            
+            //console.log('Image URL: ' + imgData);
+
+            var doc = new jsPDF('p','mm','a4');
+            
+            doc.setFontSize(10);
+                                                            
+            doc.text(10, 15, 'Filter section will be printed where.')
+            
+            doc.addImage(imgData, 'jpeg', 10, 20);
+            
+            doc.save('sample.pdf');
+        }
+    })*/
+
+    console.log(res.offsetHeight, res.offsetWidth)
+    var a = html2canvas(document.querySelector("#resultado")).then(canvas => {
+        document.body.appendChild(canvas)
+        
+        var imgData = canvas.toDataURL('image/jpeg')
+
+        var doc = new jsPDF('p','mm','a4');
+            
+        doc.setFontSize(10);
+                                                        
+        doc.text(10, 15, 'Filter section will be printed where.')
+        
+        doc.addImage(imgData, 'jpeg', 10, 40, 180, res.offsetHeight/5);
+        
+        doc.save('sample.pdf');
+    })
 }
