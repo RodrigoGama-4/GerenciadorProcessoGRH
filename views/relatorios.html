@@ -53,7 +53,8 @@
                 <label for="data">Data Final:</label>
                 <input type="date" id="data_final" class="input" name="data_final">
                 
-                <button id="enviar" type="submit">Gerar Relatório</button>
+                <button class="enviar" type="submit">Gerar Relatório</button>
+                <button id="botao" class="notVisivel enviar notMargin" type="button">Gerar PDF</button>
             </form>
         </div>
     </section>
@@ -63,11 +64,12 @@
     </section>
 
     <footer>
-        <button id="botao">Gerar PDF</button>
+        
         <p>&copy;Gerencia de Recursos Humanos</p>
     </footer>
     <script type="module" src="../assets/script/script_relatorios.js"></script>
     <script type="module" src="../assets/script/firebase/sair.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    <script src="../assets/script/html2canvas.min.js"></script>
 </body>
 </html>
