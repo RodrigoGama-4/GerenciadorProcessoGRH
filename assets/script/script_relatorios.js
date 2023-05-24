@@ -142,7 +142,7 @@ function gerarPDF() {
             doc.save('sample.pdf');
         }
     })*/
-
+    /*
     console.log(res.offsetHeight, res.offsetWidth)
     var a = html2canvas(document.querySelector("#resultado")).then(canvas => {
         document.body.appendChild(canvas)
@@ -158,5 +158,67 @@ function gerarPDF() {
         doc.addImage(imgData, 'jpeg', 10, 40, 180, res.offsetHeight/5);
         
         doc.save('sample.pdf');
+    })
+    */
+
+    // GERANDO PDF DA MANEIRA CORRETA COM TAMANHO PARA CADA DISPOSITIVO
+    // https://pt.stackoverflow.com/questions/386213/jspdf-e-canvas-responsivo
+    const deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    const html_source = document.getElementById('resultado');
+    const filename = 'PIC.pdf';
+
+    html2canvas(html_source).then(function(canvas) {
+
+        let imgData = canvas.toDataURL('image/png');
+        let imgWidth = 210;
+        let pageHeight = 297;
+
+        let imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+        let pdf = new jsPDF('p', 'mm');
+
+        let fix_imgWidth = 0; // Padrao
+        let fix_imgHeight = 18; // Padrao
+
+
+        if (deviceWidth < 600) { //  max-width: 600px -  Dispositivos extra pequenos
+
+        fix_imgWidth = 0;
+        fix_imgHeight = 18;
+
+        } else if (deviceWidth > 600) { // min-width: 600px - Pequenos dispositivos
+
+        fix_imgWidth = 0;
+        fix_imgHeight = 18;
+
+        } else if (deviceWidth > 768) { // min-width: 768px - Dispositivos médios
+
+        fix_imgWidth = 0;
+        fix_imgHeight = 18;
+
+        } else if (deviceWidth > 992) { // min-width: 992px  - Dispositivos grandes
+
+        fix_imgWidth = 0;
+        fix_imgHeight = 18;
+
+        } else if (deviceWidth > 1200) { // min-width: 1200px - Dispositivos extra grandes
+
+        fix_imgWidth = 0;
+        fix_imgHeight = 18;
+
+        }
+
+
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth + fix_imgWidth, imgHeight + fix_imgHeight);
+        heightLeft -= pageHeight;
+        }
+        pdf.save(filename);
     })
 }
