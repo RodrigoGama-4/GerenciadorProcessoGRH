@@ -24,9 +24,10 @@ async function getProcesso(data) {
     const interessadoMinusculo = processo.interessado.toLowerCase();
     const numProcMinusculo = processo.numeroProcesso.toLowerCase();
     const destinoMinusculo = processo.destino.toLowerCase();
+    const dataMinusculo = processo.data.toLowerCase();
 
     const subStringMinusculo = data.toLowerCase();
-    if (interessadoMinusculo.includes(subStringMinusculo) || numProcMinusculo.includes(subStringMinusculo) || destinoMinusculo.includes(subStringMinusculo)){
+    if (interessadoMinusculo.includes(subStringMinusculo) || numProcMinusculo.includes(subStringMinusculo) || destinoMinusculo.includes(subStringMinusculo) || dataMinusculo.includes(subStringMinusculo)){
       lista_processos.unshift(processo);
       lista_processos.unshift(processo.id);
     }
