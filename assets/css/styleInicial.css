@@ -208,6 +208,16 @@ button.active {
     width: 10rem;
 }
 
+/* Tornar filtros visiveis */
+
+.visivel {
+    visibility: visible;
+}
+
+.notVisivel {
+    visibility: hidden;
+}
+
 /* Responsividade */
 
 @media (max-width: 780px) {

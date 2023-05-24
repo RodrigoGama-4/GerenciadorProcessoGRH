@@ -22,6 +22,22 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
+var botaoFiltros = document.getElementById('f_busca_filtros_btn')
+var opcoesFiltros = document.getElementById('opcoes_filtros')
+
+
+// Adicionando evento de clique no botao filtro, para ativar ou desativar a exibição dos filtros
+botaoFiltros.addEventListener('click', function(e){
+    if (opcoesFiltros.classList.contains('visivel')) {
+        opcoesFiltros.classList.remove('visivel')
+        opcoesFiltros.classList.add('notVisivel')
+    } else {
+        opcoesFiltros.classList.remove('notVisivel')
+        opcoesFiltros.classList.add('visivel')
+    }
+})
+
+
 var estadoFiltroProcesso = false;
 var estadoInteressado = false;
 var estadoDestino = false;
