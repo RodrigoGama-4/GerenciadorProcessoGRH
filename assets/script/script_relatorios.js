@@ -118,7 +118,7 @@ function gerarPDF() {
     // https://pt.stackoverflow.com/questions/386213/jspdf-e-canvas-responsivo
     const deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const html_source = document.getElementById('resultado');
-    const filename = 'PIC.pdf';
+    const filename = 'relatorioGRH.pdf';
 
     html2canvas(html_source).then(function(canvas) {
 
