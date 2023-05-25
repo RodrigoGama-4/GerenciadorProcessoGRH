@@ -68,7 +68,7 @@ function construir(inicio, final, proc) {
     var n_proc = proc.length
     res.style.border = '2px solid black'
     res.innerHTML = `<div class='resultado_quant'>
-                        <p>No Periodo de ${inicio} a ${final} foram encontrados ${n_proc} processo(s)</p>
+                        <p>No Periodo de <span style='font-weight: 800;'>${inicio} a ${final}</span> foram encontrados <span style='font-weight: 800;'>${n_proc} processo(s)</span></p>
                     </div>`
 
     if (n_proc == 1) {
@@ -78,6 +78,8 @@ function construir(inicio, final, proc) {
                                     <p>Número do Processo: ${proc[0].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[0].interessado}</p>
                                     <p>Destino: ${proc[0].destino}</p>
+                                    <p>Assunto: ${proc[0].assunto}</p>
+                                    <p>Observacoes: ${proc[0].obs}</p>
                                 </div>
                             </div>
                             `
@@ -89,6 +91,8 @@ function construir(inicio, final, proc) {
                                     <p>Número do Processo: ${proc[i].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[i].interessado}</p>
                                     <p>Destino: ${proc[i].destino}</p>
+                                    <p>Assunto: ${proc[i].assunto}</p>
+                                    <p>Observacoes: ${proc[i].obs}</p>
                                 </div>
                             </div>
                             `
@@ -109,57 +113,6 @@ botao.addEventListener('click', function(e){
 
 // funcao para gerar pdf
 function gerarPDF() {
-
-    /*
-    //pega o html do item resultado
-    const ht = res.innerHTML
-    console.log('ht', ht)
-
-    //cria um objeto jspdf
-    var doc = new jsPDF() 
-
-    //adiciona o html ao objeto
-    doc.fromHTML(ht)
-
-    //salva o documento em pdf
-    doc.save('teste.pdf')
-    
-    html2canvas(document.getElementById("resultado"), {
-        onrendered: function(canvas) {
-                            
-            var imgData = canvas.toDataURL('image/jpeg');
-            
-            //console.log('Image URL: ' + imgData);
-
-            var doc = new jsPDF('p','mm','a4');
-            
-            doc.setFontSize(10);
-                                                            
-            doc.text(10, 15, 'Filter section will be printed where.')
-            
-            doc.addImage(imgData, 'jpeg', 10, 20);
-            
-            doc.save('sample.pdf');
-        }
-    })*/
-    /*
-    console.log(res.offsetHeight, res.offsetWidth)
-    var a = html2canvas(document.querySelector("#resultado")).then(canvas => {
-        document.body.appendChild(canvas)
-        
-        var imgData = canvas.toDataURL('image/jpeg')
-
-        var doc = new jsPDF('p','mm','a4');
-            
-        doc.setFontSize(10);
-                                                        
-        doc.text(10, 15, 'Filter section will be printed where.')
-        
-        doc.addImage(imgData, 'jpeg', 10, 40, 180, res.offsetHeight/5);
-        
-        doc.save('sample.pdf');
-    })
-    */
 
     // GERANDO PDF DA MANEIRA CORRETA COM TAMANHO PARA CADA DISPOSITIVO
     // https://pt.stackoverflow.com/questions/386213/jspdf-e-canvas-responsivo
@@ -184,28 +137,28 @@ function gerarPDF() {
 
         if (deviceWidth < 600) { //  max-width: 600px -  Dispositivos extra pequenos
 
-        fix_imgWidth = 0;
-        fix_imgHeight = 18;
+            fix_imgWidth = 0;
+            fix_imgHeight = 18;
 
         } else if (deviceWidth > 600) { // min-width: 600px - Pequenos dispositivos
 
-        fix_imgWidth = 0;
-        fix_imgHeight = 18;
+            fix_imgWidth = 0;
+            fix_imgHeight = 18;
 
         } else if (deviceWidth > 768) { // min-width: 768px - Dispositivos médios
 
-        fix_imgWidth = 0;
-        fix_imgHeight = 18;
+            fix_imgWidth = 0;
+            fix_imgHeight = 18;
 
         } else if (deviceWidth > 992) { // min-width: 992px  - Dispositivos grandes
 
-        fix_imgWidth = 0;
-        fix_imgHeight = 18;
+            fix_imgWidth = 0;
+            fix_imgHeight = 18;
 
         } else if (deviceWidth > 1200) { // min-width: 1200px - Dispositivos extra grandes
 
-        fix_imgWidth = 0;
-        fix_imgHeight = 18;
+            fix_imgWidth = 0;
+            fix_imgHeight = 18;
 
         }
 
@@ -214,10 +167,10 @@ function gerarPDF() {
         heightLeft -= pageHeight;
 
         while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth + fix_imgWidth, imgHeight + fix_imgHeight);
-        heightLeft -= pageHeight;
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth + fix_imgWidth, imgHeight + fix_imgHeight);
+            heightLeft -= pageHeight;
         }
         pdf.save(filename);
     })

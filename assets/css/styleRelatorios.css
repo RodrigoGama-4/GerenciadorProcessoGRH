@@ -193,6 +193,10 @@ label {
     width: 98%;
 }
 
+.resultado_quant p {
+    font-size: 24px;
+}
+
 .resultado_indi_informacoes {
     width: 80%;
     margin-left: 20px;
