@@ -75,6 +75,7 @@ function construir(inicio, final, proc) {
         res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
+                                    <p>Data: ${proc[0].data}</p>
                                     <p>Número do Processo: ${proc[0].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[0].interessado}</p>
                                     <p>Destino: ${proc[0].destino}</p>
@@ -88,6 +89,7 @@ function construir(inicio, final, proc) {
             res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
+                                    <p>Data: ${proc[i].data}</p>
                                     <p>Número do Processo: ${proc[i].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[i].interessado}</p>
                                     <p>Destino: ${proc[i].destino}</p>
