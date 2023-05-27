@@ -65,6 +65,12 @@ function verPeriodo() {
 
 function construir(inicio, final, proc) {
 
+      //Convertendo datas padrão br
+      let datafinal_split = final.split('-');
+      let datainicio_split = inicio.split('-');
+      inicio = `${datainicio_split[2]}-${datainicio_split[1]}-${datainicio_split[0]}`;
+      final = `${datafinal_split[2]}-${datafinal_split[1]}-${datafinal_split[0]}`;
+
     var n_proc = proc.length
     res.style.border = '2px solid black'
     res.innerHTML = `<div class='resultado_quant'>
@@ -72,10 +78,14 @@ function construir(inicio, final, proc) {
                     </div>`
 
     if (n_proc == 1) {
+         //Convertendo datas padrão br
+         let data_split = proc[0].data.split('-');
+         let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+
         res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${proc[0].data}</p>
+                                    <p>Data: ${dataRefatorada}</p>
                                     <p>Número do Processo: ${proc[0].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[0].interessado}</p>
                                     <p>Destino: ${proc[0].destino}</p>
@@ -86,10 +96,13 @@ function construir(inicio, final, proc) {
                             `
     } else if (n_proc > 1) {
         for (var i = 0; i < n_proc; i++) {
+              //Convertendo datas padrão br
+                let data_split = proc[i].data.split('-');
+                let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
             res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${proc[i].data}</p>
+                                    <p>Data: ${dataRefatorada}</p>
                                     <p>Número do Processo: ${proc[i].numeroProcesso}</p>
                                     <p>Nome do Interessado: ${proc[i].interessado}</p>
                                     <p>Destino: ${proc[i].destino}</p>
