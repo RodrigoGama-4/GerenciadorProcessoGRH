@@ -1,19 +1,23 @@
 import { getProcesso, getProcessos, excluir, getProcessoDestino, getProcessoInteressado, getProcessoNumeroProcesso } from "./firebase/funcFirebase.js"
 
+// Toda vez que o DOM carregar a função de verificação ira ser chamada
 document.addEventListener("DOMContentLoaded", function(){
     ver()
 })
 
+// pegando o status de login do localstorage
 var status = localStorage.getItem('status')
+
+// declarando variaveis estados dos filtros como false
 var estadoFiltroProcesso = false;
 var estadoInteressado = false;
 var estadoDestino = false;
 
 
+// Função que faz a verificação de login e verificação de filtros ativos no sessionstorage
 function ver(){
     if (status == "true") {
         console.log("Logado")
-        
         if (getDadosSessao('filtros') == 'ativado') {
             opcoesFiltros.classList.remove('notVisivel')
             opcoesFiltros.classList.add('visivel')
@@ -46,7 +50,6 @@ res.style.border = 'none'
 var botaoFiltros = document.getElementById('f_busca_filtros_btn')
 var opcoesFiltros = document.getElementById('opcoes_filtros')
 
-
 // Adicionando evento de clique no botao filtro, para ativar ou desativar a exibição dos filtros
 botaoFiltros.addEventListener('click', function(e){
     if (opcoesFiltros.classList.contains('visivel')) {
@@ -60,14 +63,13 @@ botaoFiltros.addEventListener('click', function(e){
     }
 })
 
+
+// COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
 var filtro_processo = document.getElementById('filtro_numero_processo');
 var filtro_interessado = document.getElementById('filtro_interessado');
 var filtro_destino = document.getElementById('filtro_destino');
 
-//COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
-
-    //FILTRO NUMERO PROCESSO
-    
+// FILTRO NUMERO PROCESSO
 filtro_processo.addEventListener('click', (e) => {
     if (estadoFiltroProcesso) {
         estadoFiltroProcesso = false;
@@ -78,7 +80,7 @@ filtro_processo.addEventListener('click', (e) => {
         filtro_processo.classList.toggle('active');
         addDadosSessao('fProcesso', 'ativado')
 
-        //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+        // SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
         estadoDestino = false;
         estadoInteressado = false;
         addDadosSessao('fDestino', 'desativado')
@@ -92,9 +94,8 @@ filtro_processo.addEventListener('click', (e) => {
     main()
 });
 
-    //FILTRO INTERESSADO
-    
 
+// FILTRO INTERESSADO 
 filtro_interessado.addEventListener('click', (e) => {
     if (estadoInteressado) {
         estadoInteressado = false;
@@ -105,7 +106,7 @@ filtro_interessado.addEventListener('click', (e) => {
         filtro_interessado.classList.toggle('active');
         addDadosSessao('fInteressado', 'ativado')
 
-        //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
+        // SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
         estadoDestino = false;
         estadoFiltroProcesso = false;
         addDadosSessao('fProcesso', 'desativado')
@@ -119,9 +120,8 @@ filtro_interessado.addEventListener('click', (e) => {
     main()
 });
 
-    //FILTRO DESTINO
-    
 
+// FILTRO DESTINO
 filtro_destino.addEventListener('click', (e) => {
     if (estadoDestino) {
         estadoDestino = false;
@@ -166,9 +166,11 @@ form.addEventListener('submit', function(e) {
 // Função principal - irá verificar se a busca é para todos os processos ou para algum termo especifico
 async function main() {
 
+    // Verificando se tem algum termo de busca no sessionstorage
     if (getDadosSessao('busca')){
         t_busca.value = getDadosSessao('busca')
 
+        // Fazendo a busca que mostra todos os processos
         if (t_busca.value == '*'){
             // lista recebe os dados da função de pesquisa
             lista_processos = await getProcessos()
@@ -181,7 +183,9 @@ async function main() {
             if (lista_processos[0].length >= 3){
                 window.scroll(0, 350)
             }
+        // Caso não seja um asterisco (que faz a busca por todos os processos)
         } else {
+            // Fazendo a busco tendo como filtro o numero do processo
             if (estadoFiltroProcesso){
                 // lista recebe os dados da função de pesquisa 
                 lista_processos = await getProcessoNumeroProcesso(t_busca.value)
@@ -191,6 +195,7 @@ async function main() {
                 construir();
                 texto_fim.style.visibility = 'visible'
             }
+            // Fazendo a busca tendo como filtro o interessado
             if (estadoInteressado){
                 // lista recebe os dados da função de pesquisa 
                 lista_processos = await getProcessoInteressado(t_busca.value)
@@ -200,7 +205,7 @@ async function main() {
                 construir();
                 texto_fim.style.visibility = 'visible'
             }
-
+            // Fazendo a busca tendo como filtro o destino
             if(estadoDestino){
                 // lista recebe os dados da função de pesquisa 
                 lista_processos = await getProcessoDestino(t_busca.value)
@@ -210,6 +215,7 @@ async function main() {
                 construir();
                 texto_fim.style.visibility = 'visible'
             }
+            // Fazendo a busca caso nenhum dos filtros estejam ativados
             if (!estadoDestino && !estadoFiltroProcesso && !estadoInteressado) {
                 // lista recebe os dados da função de pesquisa 
                 lista_processos = await getProcesso(t_busca.value)
@@ -219,10 +225,12 @@ async function main() {
                 construir();
                 texto_fim.style.visibility = 'visible'
             }
+            // Rolando a pagina caso a quantidade de processos seja maior que 2
             if (lista_processos.length > 4){
                 window.scroll(0, 350)
             }
         }
+    // Nenhum dado salvo no sessionstorage
     } else {
         console.log('Nenhum dado Salvo')
         texto_fim.style.visibility = 'hidden'
@@ -240,11 +248,12 @@ async function main() {
 function construir() {
     console.log('Constuindo processos pesquisados, tamanho: ', lista_processos.length/2)
     console.log(lista_processos)
+
     for (var i = 1; i < lista_processos.length; i+=2) {
-        //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
+
+        // INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
         const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
         let dataRefatorada = lista_processos[i].data;
-
 
         if (regex.test(lista_processos[i].data)) {
             let data = lista_processos[i].data;
@@ -276,12 +285,13 @@ function construir() {
 function construirAll() {
     console.log('Constuindo todos os processos, tamanho: ', lista_processos[0].length)
     console.log(lista_processos)
+
     for (var i = 0; i < lista_processos.length; i++) {
         for (var j = 0; j < lista_processos[i].length; j++){
-            //INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
+
+            // INVERTENDO A ORDEM DA DATA PARA O PADRÃO PT-BR
             const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
             let dataRefatorada = lista_processos[i][j].data;
-
 
             if (regex.test(lista_processos[i][j].data)) {
                 let data = lista_processos[i][j].data;
@@ -289,7 +299,6 @@ function construirAll() {
                 dataRefatorada = `${data_split[2]}/${data_split[1]}/${data_split[0]}`;
                 //console.log('A string está no formato esperado');
             }  
-            
             
             res.innerHTML += `<div>
                 <button class="resultado_indi">
@@ -345,6 +354,7 @@ function dadosNovaPagina(dado) {
 
 // Função para confirmar a exclusão
 function confirmarExclusao(item) {
+
     // Elemento que impede o usuario de clicar fora do popup
     let overlayBg = document.createElement('div');
     overlayBg.classList.add('overlay-bg');
@@ -371,7 +381,6 @@ function confirmarExclusao(item) {
         main()
     })
     
-
     // Fechar Janela de confirmação de exclusão
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none";
@@ -384,13 +393,13 @@ function confirmarExclusao(item) {
 }
 
 
-// Função para adicionar ao sessionStorage termo pesquisado
+// Função para adicionar itens ao sessionstorage
 function addDadosSessao(key, value) {
     sessionStorage.setItem(key, value)
 }
 
 
-// Função para pegar o termo pesquisado do sessionStorage
+// Função para pegar itens do sessionstorage
 function getDadosSessao(key) {
     if(sessionStorage.getItem(key) != "") {
         return sessionStorage.getItem(key)
@@ -400,7 +409,7 @@ function getDadosSessao(key) {
 }
 
 
-// Função para selecionar o texto quando clicar no campo de pesquisa
+// Função para selecionar o texto todo quando clicar no campo de pesquisa
 function select() {
     t_busca.select()
 }
