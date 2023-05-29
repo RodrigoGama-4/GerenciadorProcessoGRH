@@ -219,7 +219,7 @@ function construir() {
         if (regex.test(lista_processos[i].data)) {
             let data = lista_processos[i].data;
             let data_split = data.split('-');
-            dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+            dataRefatorada = `${data_split[2]}/${data_split[1]}/${data_split[0]}`;
             //console.log('A string está no formato esperado');
         }  
         
@@ -256,7 +256,7 @@ function construirAll() {
             if (regex.test(lista_processos[i][j].data)) {
                 let data = lista_processos[i][j].data;
                 let data_split = data.split('-');
-                dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+                dataRefatorada = `${data_split[2]}/${data_split[1]}/${data_split[0]}`;
                 //console.log('A string está no formato esperado');
             }  
             

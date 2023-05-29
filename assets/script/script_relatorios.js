@@ -68,8 +68,8 @@ function construir(inicio, final, proc) {
       //Convertendo datas padrão br
       let datafinal_split = final.split('-');
       let datainicio_split = inicio.split('-');
-      inicio = `${datainicio_split[2]}-${datainicio_split[1]}-${datainicio_split[0]}`;
-      final = `${datafinal_split[2]}-${datafinal_split[1]}-${datafinal_split[0]}`;
+      inicio = `${datainicio_split[2]}/${datainicio_split[1]}/${datainicio_split[0]}`;
+      final = `${datafinal_split[2]}/${datafinal_split[1]}/${datafinal_split[0]}`;
 
     var n_proc = proc.length
     res.style.border = '2px solid black'
@@ -80,7 +80,7 @@ function construir(inicio, final, proc) {
     if (n_proc == 1) {
          //Convertendo datas padrão br
          let data_split = proc[0].data.split('-');
-         let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+         let dataRefatorada = `${data_split[2]}/${data_split[1]}/${data_split[0]}`;
 
         res.innerHTML += `
                             <div class='resultado_indi'>
@@ -98,7 +98,7 @@ function construir(inicio, final, proc) {
         for (var i = 0; i < n_proc; i++) {
               //Convertendo datas padrão br
                 let data_split = proc[i].data.split('-');
-                let dataRefatorada = `${data_split[2]}-${data_split[1]}-${data_split[0]}`;
+                let dataRefatorada = `${data_split[2]}/${data_split[1]}/${data_split[0]}`;
             res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
