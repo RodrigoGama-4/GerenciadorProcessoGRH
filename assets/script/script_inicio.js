@@ -5,10 +5,31 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 var status = localStorage.getItem('status')
+var estadoFiltroProcesso = false;
+var estadoInteressado = false;
+var estadoDestino = false;
+
 
 function ver(){
     if (status == "true") {
         console.log("Logado")
+        
+        if (getDadosSessao('filtros') == 'ativado') {
+            opcoesFiltros.classList.remove('notVisivel')
+            opcoesFiltros.classList.add('visivel')
+        }
+        if (getDadosSessao('fProcesso') == 'ativado') {
+            estadoFiltroProcesso = true;
+            filtro_processo.classList.toggle('active');
+        } else if (getDadosSessao('fInteressado') == 'ativado') {
+            estadoInteressado = true;
+            filtro_interessado.classList.toggle('active');
+        } else if (getDadosSessao('fDestino') == 'ativado') {
+            estadoDestino = true;
+            filtro_destino.classList.toggle('active');
+        } else {
+            console.log('Nenhuma filtro ativado')
+        }
         main()
     } else {
         window.location = "../index.html"
@@ -31,16 +52,13 @@ botaoFiltros.addEventListener('click', function(e){
     if (opcoesFiltros.classList.contains('visivel')) {
         opcoesFiltros.classList.remove('visivel')
         opcoesFiltros.classList.add('notVisivel')
+        addDadosSessao('filtros', 'desativado')
     } else {
         opcoesFiltros.classList.remove('notVisivel')
         opcoesFiltros.classList.add('visivel')
+        addDadosSessao('filtros', 'ativado')
     }
 })
-
-
-var estadoFiltroProcesso = false;
-var estadoInteressado = false;
-var estadoDestino = false;
 
 var filtro_processo = document.getElementById('filtro_numero_processo');
 var filtro_interessado = document.getElementById('filtro_interessado');
@@ -54,13 +72,17 @@ filtro_processo.addEventListener('click', (e) => {
     if (estadoFiltroProcesso) {
         estadoFiltroProcesso = false;
         filtro_processo.classList.toggle('active');
+        addDadosSessao('fProcesso', 'desativado')
     } else {
         estadoFiltroProcesso = true;
         filtro_processo.classList.toggle('active');
+        addDadosSessao('fProcesso', 'ativado')
 
         //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
         estadoDestino = false;
         estadoInteressado = false;
+        addDadosSessao('fDestino', 'desativado')
+        addDadosSessao('fInteressado', 'desativado')
 
         // Remover a classe 'active' dos outros filtros, se estiverem presentes
         filtro_interessado.classList.remove('active');
@@ -77,13 +99,17 @@ filtro_interessado.addEventListener('click', (e) => {
     if (estadoInteressado) {
         estadoInteressado = false;
         filtro_interessado.classList.toggle('active');
+        addDadosSessao('fInteressado', 'desativado')
     } else {
         estadoInteressado = true;
         filtro_interessado.classList.toggle('active');
+        addDadosSessao('fInteressado', 'ativado')
 
         //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
         estadoDestino = false;
         estadoFiltroProcesso = false;
+        addDadosSessao('fProcesso', 'desativado')
+        addDadosSessao('fDestino', 'desativado')
 
         // Remover a classe 'active' dos outros filtros, se estiverem presentes
         filtro_processo.classList.remove('active');
@@ -100,13 +126,17 @@ filtro_destino.addEventListener('click', (e) => {
     if (estadoDestino) {
         estadoDestino = false;
         filtro_destino.classList.toggle('active');
+        addDadosSessao('fDestino', 'desativado')
     } else {
         estadoDestino = true;
         filtro_destino.classList.toggle('active');
+        addDadosSessao('fDestino', 'ativado')
 
         //SETANDO FALSE NOS OUTROS FILTROS PARA NAO DAR CONFLITO DE PESQUISA
         estadoInteressado = false;
         estadoFiltroProcesso = false;
+        addDadosSessao('fProcesso', 'desativado')
+        addDadosSessao('fInteressado', 'desativado')
 
         // Remover a classe 'active' dos outros filtros, se estiverem presentes
         filtro_processo.classList.remove('active');
