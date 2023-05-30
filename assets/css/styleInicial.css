@@ -208,15 +208,6 @@ button.active {
     width: 10rem;
 }
 
-/* Tornar filtros visiveis */
-
-.visivel {
-    visibility: visible;
-}
-
-.notVisivel {
-    visibility: hidden;
-}
 
 /* Responsividade */
 

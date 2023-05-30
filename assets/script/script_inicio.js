@@ -18,10 +18,6 @@ var estadoDestino = false;
 function ver(){
     if (status == "true") {
         console.log("Logado")
-        if (getDadosSessao('filtros') == 'ativado') {
-            opcoesFiltros.classList.remove('notVisivel')
-            opcoesFiltros.classList.add('visivel')
-        }
         if (getDadosSessao('fProcesso') == 'ativado') {
             estadoFiltroProcesso = true;
             filtro_processo.classList.toggle('active');
@@ -46,22 +42,6 @@ var t_busca = document.getElementById('busca')
 var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
-
-var botaoFiltros = document.getElementById('f_busca_filtros_btn')
-var opcoesFiltros = document.getElementById('opcoes_filtros')
-
-// Adicionando evento de clique no botao filtro, para ativar ou desativar a exibição dos filtros
-botaoFiltros.addEventListener('click', function(e){
-    if (opcoesFiltros.classList.contains('visivel')) {
-        opcoesFiltros.classList.remove('visivel')
-        opcoesFiltros.classList.add('notVisivel')
-        addDadosSessao('filtros', 'desativado')
-    } else {
-        opcoesFiltros.classList.remove('notVisivel')
-        opcoesFiltros.classList.add('visivel')
-        addDadosSessao('filtros', 'ativado')
-    }
-})
 
 
 // COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
