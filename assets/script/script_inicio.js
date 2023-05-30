@@ -43,7 +43,6 @@ var res = document.getElementById('resultado')
 var texto_fim = document.getElementById('fim')
 res.style.border = 'none'
 
-var opcoesFiltros = document.getElementById('opcoes_filtros')
 
 // COMEÇANDO A LOGICA DE PESQUISA COM FILTRO
 var filtro_processo = document.getElementById('filtro_numero_processo');
