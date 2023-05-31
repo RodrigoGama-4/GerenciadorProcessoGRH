@@ -62,7 +62,6 @@ function verPeriodo() {
     console.log(periodoFinal.value)
 
     if (periodoFinal.value.length != 10 || periodoInicial.value.length != 10) {
-        alert('Valor de data invalida! Verifique a data e tente novamente!')
         constuirErro()
     } else {
         for (var i = 0; i < lista_processos[0].length; i++) {
