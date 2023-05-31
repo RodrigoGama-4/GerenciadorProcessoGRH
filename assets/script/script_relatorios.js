@@ -58,8 +58,8 @@ function verPeriodo() {
     let periodoFinal = document.getElementById('data_final')
     let lista_relatorio = []
 
-    console.log(periodoInicial.value)
-    console.log(periodoFinal.value)
+    console.log('Periodo inicial: ', periodoInicial.value)
+    console.log('Periodo final: ', periodoFinal.value)
 
     if (periodoFinal.value.length != 10 || periodoInicial.value.length != 10) {
         constuirErro()
@@ -113,12 +113,12 @@ function construir(inicio, final, proc) {
         res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${dataRefatorada}</p>
-                                    <p>Número do Processo: ${proc[0].numeroProcesso}</p>
-                                    <p>Nome do Interessado: ${proc[0].interessado}</p>
-                                    <p>Destino: ${proc[0].destino}</p>
-                                    <p>Assunto: ${proc[0].assunto}</p>
-                                    <p>Observacoes: ${proc[0].obs}</p>
+                                    <p><span style='font-weight: 800;'>Data:</span> ${dataRefatorada}</p>
+                                    <p><span style='font-weight: 800;'>Número do Processo:</span> ${proc[0].numeroProcesso}</p>
+                                    <p><span style='font-weight: 800;'>Nome do Interessado:</span> ${proc[0].interessado}</p>
+                                    <p><span style='font-weight: 800;'>Destino:</span> ${proc[0].destino}</p>
+                                    <p><span style='font-weight: 800;'>Assunto:</span> ${proc[0].assunto}</p>
+                                    <p><span style='font-weight: 800;'>Observacoes:</span> ${proc[0].obs}</p>
                                 </div>
                             </div>
                             `
@@ -131,12 +131,12 @@ function construir(inicio, final, proc) {
             res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${dataRefatorada}</p>
-                                    <p>Número do Processo: ${proc[i].numeroProcesso}</p>
-                                    <p>Nome do Interessado: ${proc[i].interessado}</p>
-                                    <p>Destino: ${proc[i].destino}</p>
-                                    <p>Assunto: ${proc[i].assunto}</p>
-                                    <p>Observacoes: ${proc[i].obs}</p>
+                                    <p><span style='font-weight: 800;'>Data:</span> ${dataRefatorada}</p>
+                                    <p><span style='font-weight: 800;'>Número do Processo:</span> ${proc[i].numeroProcesso}</p>
+                                    <p><span style='font-weight: 800;'>Nome do Interessado:</span> ${proc[i].interessado}</p>
+                                    <p><span style='font-weight: 800;'>Destino:</span> ${proc[i].destino}</p>
+                                    <p><span style='font-weight: 800;'>Assunto:</span> ${proc[i].assunto}</p>
+                                    <p><span style='font-weight: 800;'>Observacoes:</span> ${proc[i].obs}</p>
                                 </div>
                             </div>
                             `
