@@ -80,6 +80,7 @@ function verPeriodo() {
 }
 
 
+// Função que mostra no html que a data colocada está incorreta
 function constuirErro() {
     res.style.border = '2px solid black'
     res.innerHTML = `<div class='resultado_quant'>
