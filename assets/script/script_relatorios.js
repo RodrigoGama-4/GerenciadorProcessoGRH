@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // pegando o status de login do localstorage
 var status = localStorage.getItem('status')
 
+// Pegando elementos html
 var res = document.getElementById('resultado')
 var form = document.getElementById('form_data')
 var lista_processos = []
@@ -58,22 +59,33 @@ function verPeriodo() {
     let periodoFinal = document.getElementById('data_final')
     let lista_relatorio = []
 
-    console.log(periodoInicial.value)
-    console.log(periodoFinal.value)
-    
-    for (var i = 0; i < lista_processos[0].length; i++) {
-        if (lista_processos[0][i].data >= periodoInicial.value && lista_processos[0][i].data <= periodoFinal.value) {
-            console.log(`${lista_processos[0][i].data} Esta dentro do periodo`)
-            lista_relatorio.unshift(lista_processos[0][i])
-        } else {
-            console.log(`${lista_processos[0][i].data} Não está dentro do periodo`)
+    console.log('Periodo inicial: ', periodoInicial.value)
+    console.log('Periodo final: ', periodoFinal.value)
+
+    if (periodoFinal.value.length != 10 || periodoInicial.value.length != 10) {
+        constuirErro()
+    } else {
+        for (var i = 0; i < lista_processos[0].length; i++) {
+            if (lista_processos[0][i].data >= periodoInicial.value && lista_processos[0][i].data <= periodoFinal.value) {
+                console.log(`${lista_processos[0][i].data} Esta dentro do periodo`)
+                lista_relatorio.unshift(lista_processos[0][i])
+            } else {
+                console.log(`${lista_processos[0][i].data} Não está dentro do periodo`)
+            }
         }
+
+        // Chamando a função para construir processo passando as datas selecionadas e a lista dos processos do periodo
+       construir(periodoInicial.value, periodoFinal.value, lista_relatorio) 
     }
+}
 
-    console.log(lista_relatorio.length)
 
-    // Chamando a função para construir processo passando as datas selecionadas e a lista dos processos do periodo
-    construir(periodoInicial.value, periodoFinal.value, lista_relatorio)
+// Função que mostra no html que a data colocada está incorreta
+function constuirErro() {
+    res.style.border = '2px solid black'
+    res.innerHTML = `<div class='resultado_quant'>
+                        <p><span style='font-weight: 800;'>Valor de Data Invalido!</span> Verifique as Datas e tente Novamente!</p>
+                    </div>`
 }
 
 
@@ -102,12 +114,12 @@ function construir(inicio, final, proc) {
         res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${dataRefatorada}</p>
-                                    <p>Número do Processo: ${proc[0].numeroProcesso}</p>
-                                    <p>Nome do Interessado: ${proc[0].interessado}</p>
-                                    <p>Destino: ${proc[0].destino}</p>
-                                    <p>Assunto: ${proc[0].assunto}</p>
-                                    <p>Observacoes: ${proc[0].obs}</p>
+                                    <p><span style='font-weight: 800;'>Data:</span> ${dataRefatorada}</p>
+                                    <p><span style='font-weight: 800;'>Número do Processo:</span> ${proc[0].numeroProcesso}</p>
+                                    <p><span style='font-weight: 800;'>Nome do Interessado:</span> ${proc[0].interessado}</p>
+                                    <p><span style='font-weight: 800;'>Destino:</span> ${proc[0].destino}</p>
+                                    <p><span style='font-weight: 800;'>Assunto:</span> ${proc[0].assunto}</p>
+                                    <p><span style='font-weight: 800;'>Observacoes:</span> ${proc[0].obs}</p>
                                 </div>
                             </div>
                             `
@@ -120,12 +132,12 @@ function construir(inicio, final, proc) {
             res.innerHTML += `
                             <div class='resultado_indi'>
                                 <div class="resultado_indi_informacoes">
-                                    <p>Data: ${dataRefatorada}</p>
-                                    <p>Número do Processo: ${proc[i].numeroProcesso}</p>
-                                    <p>Nome do Interessado: ${proc[i].interessado}</p>
-                                    <p>Destino: ${proc[i].destino}</p>
-                                    <p>Assunto: ${proc[i].assunto}</p>
-                                    <p>Observacoes: ${proc[i].obs}</p>
+                                    <p><span style='font-weight: 800;'>Data:</span> ${dataRefatorada}</p>
+                                    <p><span style='font-weight: 800;'>Número do Processo:</span> ${proc[i].numeroProcesso}</p>
+                                    <p><span style='font-weight: 800;'>Nome do Interessado:</span> ${proc[i].interessado}</p>
+                                    <p><span style='font-weight: 800;'>Destino:</span> ${proc[i].destino}</p>
+                                    <p><span style='font-weight: 800;'>Assunto:</span> ${proc[i].assunto}</p>
+                                    <p><span style='font-weight: 800;'>Observacoes:</span> ${proc[i].obs}</p>
                                 </div>
                             </div>
                             `
