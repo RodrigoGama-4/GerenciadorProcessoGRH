@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // pegando o status de login do localstorage
 var status = localStorage.getItem('status')
 
+// Pegando elementos html
 var res = document.getElementById('resultado')
 var form = document.getElementById('form_data')
 var lista_processos = []
