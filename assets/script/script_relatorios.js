@@ -60,20 +60,31 @@ function verPeriodo() {
 
     console.log(periodoInicial.value)
     console.log(periodoFinal.value)
-    
-    for (var i = 0; i < lista_processos[0].length; i++) {
-        if (lista_processos[0][i].data >= periodoInicial.value && lista_processos[0][i].data <= periodoFinal.value) {
-            console.log(`${lista_processos[0][i].data} Esta dentro do periodo`)
-            lista_relatorio.unshift(lista_processos[0][i])
-        } else {
-            console.log(`${lista_processos[0][i].data} Não está dentro do periodo`)
+
+    if (periodoFinal.value.length != 10 || periodoInicial.value.length != 10) {
+        alert('Valor de data invalida! Verifique a data e tente novamente!')
+        constuirErro()
+    } else {
+        for (var i = 0; i < lista_processos[0].length; i++) {
+            if (lista_processos[0][i].data >= periodoInicial.value && lista_processos[0][i].data <= periodoFinal.value) {
+                console.log(`${lista_processos[0][i].data} Esta dentro do periodo`)
+                lista_relatorio.unshift(lista_processos[0][i])
+            } else {
+                console.log(`${lista_processos[0][i].data} Não está dentro do periodo`)
+            }
         }
+
+        // Chamando a função para construir processo passando as datas selecionadas e a lista dos processos do periodo
+       construir(periodoInicial.value, periodoFinal.value, lista_relatorio) 
     }
+}
 
-    console.log(lista_relatorio.length)
 
-    // Chamando a função para construir processo passando as datas selecionadas e a lista dos processos do periodo
-    construir(periodoInicial.value, periodoFinal.value, lista_relatorio)
+function constuirErro() {
+    res.style.border = '2px solid black'
+    res.innerHTML = `<div class='resultado_quant'>
+                        <p><span style='font-weight: 800;'>Valor de Data Invalido!</span> Verifique as Datas e tente Novamente!</p>
+                    </div>`
 }
 
 
